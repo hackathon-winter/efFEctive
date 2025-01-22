@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.timezone import now
 
+# Create your models here.
 
 class User(models.Model):
     user_id = models.AutoField(primary_key=True)  # ユーザーID（自動採番）
