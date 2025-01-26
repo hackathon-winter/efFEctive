@@ -2,10 +2,8 @@ from django.db import models
 from django.utils.timezone import now
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 
-# Create your models here.
-
 class CustomUserManager(BaseUserManager):
-    def create_user(self, email, password=None, **extra_fields):
+    def create_user(self, email, password, **extra_fields):
         if not email:
             raise ValueError("メールアドレスは必須です")
         email = self.normalize_email(email)
@@ -31,12 +29,11 @@ class CustomUserManager(BaseUserManager):
 class User(AbstractBaseUser, PermissionsMixin):
     id = models.AutoField(primary_key=True)  # ユーザーID（自動採番）
     email = models.EmailField(unique=True, verbose_name="メールアドレス")
-    password_hash = models.CharField(max_length=255, verbose_name="パスワード")
     user_name = models.CharField(max_length=50, verbose_name="ユーザー名")
     is_staff = models.BooleanField(default=False, verbose_name="スタッフ権限")  # 必須
     is_active = models.BooleanField(default=True, verbose_name="アクティブ状態")  # 必須
     created_at = models.DateTimeField(default=now, verbose_name="作成日時")
-    updated_at = models.DateTimeField(default=now, verbose_name="更新日時")
+    updated_at = models.DateTimeField(auto_now=True, verbose_name="更新日時")
 
     objects = CustomUserManager()
 
