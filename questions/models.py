@@ -35,7 +35,6 @@ class Answer(models.Model):
 
     def __str__(self):
         return f"Answer {self.answer_id} - Session {self.session.session_id}"
-        #return f"{self.progress.Session_id} - {self.question.content[:50]}"
 
     class Meta:
         verbose_name = "解答"
