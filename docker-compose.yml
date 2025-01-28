@@ -5,6 +5,13 @@ services:
     environment:
       - "POSTGRES_USER=postgres"
       - "POSTGRES_PASSWORD=postgres"
+      - "POSTGRES_DB=postgres"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
 
   web:
     build: .
@@ -13,5 +20,12 @@ services:
       - .:/code
     ports:
       - "8000:8000"
+    environment:
+      - "DJANGO_DB_HOST=db"
+      - "DJANGO_DB_PORT=5432"
+      - "DJANGO_DB_NAME=postgres"
+      - "DJANGO_DB_USER=postgres"
+      - "DJANGO_DB_PASSWORD=postgres"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
