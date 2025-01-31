@@ -11,7 +11,7 @@ class Session(models.Model):
     created_at = models.DateTimeField(default=now, verbose_name="作成日時")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="更新日時")
 
-    @propaty
+    @property
     def progress_percentage(self):
         if self.total_questions > 0:
             return(self.correct_answers / self.total_questions)* 100
