@@ -1,25 +1,40 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
-from django.contrib import messages
+import json
+from django.contrib.auth import authenticate, login, logout
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from authentication.views.jwt_utils import generate_jwt_token
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 def login_view(request):
-    # GETリクエストの場合は、ログインフォームを表示
-    if request.method == 'GET':
-        return render(request, 'authentication/login.html')
-    
-    # POSTリクエストの場合は、ログイン処理を実行
     if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        
-        # 認証を試みる
-        user = authenticate(request, username=username, password=password)
-        
-        if user is not None:
-            # ログイン成功
-            login(request, user)
-            return redirect('home')  # ログイン後のリダイレクト先
-        else:
-            # ログイン失敗
-            messages.error(request, 'ユーザー名またはパスワードが正しくありません。')
-            return render(request, 'authentication/login.html')
+        try:
+            # JSONデータを取得する
+            data = json.loads(request.body)
+            email = data.get('email')
+            password = data.get('password')
+
+            user = authenticate(request, username=email, password=password)
+
+            if user:
+                token = generate_jwt_token(user)
+
+                return JsonResponse({
+                    'message': 'ログイン成功',
+                    'token': token,
+                    'user_id': user.id,
+                    'user_name': user.user_name
+                })
+            else:
+                return JsonResponse({'error': 'メールアドレスまたはパスワードが間違っています'}, status=400)
+
+        except json.JSONDecodeError:
+            return JsonResponse({'error': '無効なリクエストです'}, status=400)
+
+    return JsonResponse({'error': 'このページに直接アクセスすることはできません。ログインフォームから操作してください。'}, status=405)
+
+@csrf_exempt
+def logout_view(request):
+    logout(request)
+    return JsonResponse({'message': 'ログアウトしました。'}, status=200)
