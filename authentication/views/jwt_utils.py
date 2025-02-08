@@ -1,16 +1,15 @@
 import jwt
 import datetime
-import environ
 from django.conf import settings
 from django.contrib.auth import get_user_model
 
-# 環境変数の読み込み
+# 環境変数を読み込む
 env = environ.Env()
 env.read_env()
 
 User = get_user_model()
 
-#
+# JWTトークンを生成する
 def generate_jwt(user):
     payload = {
         "user_id": user.id,
@@ -26,8 +25,8 @@ def decode_jwt(token):
         payload = jwt.decode(token, JWT_SECRET_KEY, algorithms=[JWT_ALGORITHM])
         return User.objects.get(id=payload["user_id"])
     except jwt.ExpiredSignatureError:
-        return None
+        return {'error': 'トークンの有効期限が切れています。'}
     except jwt.InvalidTokenError:
-        return None
+        return {'error': '無効なトークンです。'}
     except User.DoesNotExist:
-        return None
+        return {'error': 'ユーザーが存在しません。'}
