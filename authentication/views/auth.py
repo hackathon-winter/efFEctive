@@ -21,16 +21,16 @@ def login_view(request):
                 token = generate_jwt_token(user)
 
                 return JsonResponse({
-                    'message': 'ログイン成功',
+                    'message': 'ログインが成功しました。',
                     'token': token,
                     'user_id': user.id,
                     'user_name': user.user_name
                 })
             else:
-                return JsonResponse({'error': 'メールアドレスまたはパスワードが間違っています'}, status=400)
+                return JsonResponse({'error': 'メールアドレスまたはパスワードが間違っています。'}, status=400)
 
         except json.JSONDecodeError:
-            return JsonResponse({'error': '無効なリクエストです'}, status=400)
+            return JsonResponse({'error': '無効なリクエストです。'}, status=400)
 
     return JsonResponse({'error': 'このページに直接アクセスすることはできません。ログインフォームから操作してください。'}, status=405)
 
