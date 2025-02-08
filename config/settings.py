@@ -38,6 +38,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# Clickjacking
+X_FRAME_OPTIONS = 'DENY'
+
 ROOT_URLCONF = 'config.urls'
 
 TEMPLATES = [
