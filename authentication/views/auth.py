@@ -2,11 +2,12 @@ import json
 from django.contrib.auth import authenticate, login, logout
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from authentication.views.jwt_utils import generate_jwt_token
+from authentication.views.jwt_utils import generate_jwt
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
+@csrf_exempt
 def login_view(request):
     if request.method == 'POST':
         try:
