@@ -1,0 +1,15 @@
+.table-responsive {
+    overflow-x: auto;
+    position: relative;
+    }
+   
+  table {
+    white-space: nowrap;
+    }
+          
+  th:first-child, td:first-child {
+    position: sticky;
+    left: 0;
+    background: white;
+    z-index: 2;
+    }
