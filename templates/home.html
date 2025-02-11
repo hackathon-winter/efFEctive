@@ -1,15 +1,44 @@
 {% extends 'base.html' %}
 {% block content %}
+
 <div class="d-flex align-items-center justify-content-center vh-100">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-4">
                 <div class="card shadow p-4">
-  
+                    <a class="btn btn-secondary mb-3" data-bs-toggle="modal" data-bs-target="#selectModeModal">問題演習</a>
+                    <a class="btn btn-secondary mb-3" href="">学習履歴</a>
+                    <a class="btn btn-secondary mb-3" href="">ランキング</a>
+                    <a class="btn btn-secondary" href="">ログアウト</a>
                 </div>
             </div>
         </div>
     </div>
-</div>   
+</div>
+
+<div class="modal fade" id="selectModeModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">出題設定</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="subject" value="A" checked>
+          <label class="form-check-label">科目A</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="subject" value="B">
+          <label class="form-check-label">科目B</label>
+        </div>
+              </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" href="">スタート</button>
+        <a type="button" class="btn btn-secondary" href="">続きから始める</b>
+      </div>
+    </div>
+  </div>
+</div>
 
 {% endblock %}
