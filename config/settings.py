@@ -77,12 +77,6 @@ DATABASES = {
     }
 }
 
-# JWT
-JWT_SECRET_KEY = env('JWT_SECRET_KEY')
-JWT_ALGORITHM = env('JWT_ALGORITHM', default='HS256')
-JWT_ACCESS_TOKEN_EXPIRES = env.int('JWT_ACCESS_TOKEN_EXPIRES', default=3600)
-
-
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
