@@ -1,0 +1,37 @@
+<!-- 新規ユーザー登録画面 -->
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    
+
+<div class="d-flex align-items-center justify-content-center vh-100">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="card shadow p-4">
+                    <h3 class="text-center">新規ユーザー登録</h3>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="uesrname" class="username">ユーザー名</label>
+                            <input type="username" class="form-control" name="username" id="uesrname" placeholder="ユーザー名を入力" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">メールアドレス</label>
+                            <input type="email" class="form-control" name="email" id="email" placeholder="メールアドレスを入力" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">パスワード</label>
+                            <input type="password" class="form-control" name="password" id="password" placeholder="パスワードを入力" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">登録</button>
+                    </form>                
+                        <a class="btn btn-secondary w-100 mt-3" href='#'>Googleでユーザー登録</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
