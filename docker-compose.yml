@@ -26,6 +26,8 @@ services:
       - "DJANGO_DB_NAME=postgres"
       - "DJANGO_DB_USER=postgres"
       - "DJANGO_DB_PASSWORD=postgres"
+    env_file:
+      - .env    
     depends_on:
       db:
         condition: service_healthy
