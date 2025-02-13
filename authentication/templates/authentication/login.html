@@ -20,7 +20,7 @@
                         {% endfor %}
                     </div>
                     {% endif %}
-                    <form method="POST">
+                    <form method="POST" action="{% url 'login' %}">
                         {% csrf_token %}
                         <div class="mb-3">
                             <label for="email" class="form-label">メールアドレス</label>
@@ -33,9 +33,11 @@
                         <button type="submit" class="btn btn-primary w-100">ログイン</button>
                     </form>
             
-                    <a class="btn btn-secondary w-100 mt-3" href="">Googleでログイン</a>
-                    
-                    <a class="text-center mt-3" href="#">新規ユーザー登録</a>                    
+                    <form method="POST" action="{% url 'google_login' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-secondary w-100 mt-3">Googleでログイン</button>
+                    </form>
+                    <a class="text-center mt-3" href="{% url 'register' %}">新規ユーザー登録</a>                    
                 </div>
             </div>
         </div>

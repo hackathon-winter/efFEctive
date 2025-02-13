@@ -32,7 +32,7 @@
                 <div class="modal-body">
                     <ul class="nav flex-column align-items-center">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="">ホーム画面</a>
+                            <a class="nav-link" aria-current="page" href="{% url 'home' %}">ホーム画面</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="">問題演習</a>
@@ -44,7 +44,7 @@
                             <a class="nav-link" href="">ランキング</a>
                         </li>                     
                         <li class="nav-item">
-                            <a class="nav-link" href="">ログアウト</a>
+                            <a class="nav-link" href="{% url 'logout' %}">ログアウト</a>
                         </li>
                     </ul>
                 </div>
