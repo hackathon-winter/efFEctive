@@ -41,7 +41,7 @@ def list_questions(request):
     question_content = question.content
     question_choices = list(question.choices.items())
 
-    return render(request,'test.html', {'user_answers_count':user_answers_count,'question_id':question.id,'question_content':question_content,'question_choices':question_choices}) 
+    return render(request,'問題表示用HTML', {'user_answers_count':user_answers_count,'question_id':question.id,'question_content':question_content,'question_choices':question_choices}) 
 
 @login_required
 def answer_save(request,question_id):
