@@ -46,4 +46,4 @@ def view_progress(request):
     #print(user_answers(True))
     print(session_times)
 
-    return render(request,'test.html', {'session_answers': session_answers,'session_times':session_times,'true_rate':true_rate,'sum_answer':sum_answer,'count_of_true':count_of_true}) 
+    return render(request,'進捗確認のHTML', {'session_answers': session_answers,'session_times':session_times,'true_rate':true_rate,'sum_answer':sum_answer,'count_of_true':count_of_true}) 
