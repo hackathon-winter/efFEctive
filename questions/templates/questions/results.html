@@ -5,55 +5,33 @@
 
 <div class="container">
     <div class="h2 text-center">お疲れ様でした！！</div>
-    <div class="h2 text-center">今回の成績：正答率〇％（○／△問）</div>
+    <div class="h2 text-center">
+        今回の成績：正答率{{ accuracy }}％（{{ correct_answer}}／{{ total_questions}}問）
+    </div>
     
     <div class="table-responsive">
         <table class="table table-bordered text-center">
             <thead>
                 <tr>
                     <th>No.</th>
-                    <th><a href="">1</a></th>
-                    <th>2</th>
-                    <th>3</th>
-                    <th>4</th>
-                    <th>5</th>
-                    <th>6</th>
-                    <th>7</th>
-                    <th>8</th>
-                    <th>9</th>
-                    <th>10</th>
-                    <th>11</th>
-                    <th>12</th>
-                    <th>13</th>
-                    <th>14</th>
-                    <th>15</th>
+                    {% for result in results %}
+                        <th><a href="{{% url 'question_detail' question_id=result.question.id %}}">{{ forloop.counter}}</a></th>
+                    {% endfor %}
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <th>正誤</th>
-                    <td>○</td>
-                    <td>×</td>
-                    <td>○</td>
-                    <td>×</td>
-                    <td>○</td>
-                    <td>○</td>
-                    <td>×</td>
-                    <td>○</td>
-                    <td>×</td>
-                    <td>○</td>
-                    <td>×</td>
-                    <td>○</td>
-                    <td>×</td>
-                    <td>○</td>
-                    <td>○</td>
+                    {% for result in results %}
+                        <td>{% if result.is_correct %} ○ {% else %} × {% endif %}</td>
+                    {% endfor %}
                 </tr>
             </tbody>
         </table>
     </div>
     
     <div class="text-center">
-        <a class="btn btn-dark" href="">ホーム画面へ</a>
+        <a href="{% url 'home' %}"class="btn btn-dark">ホーム画面へ</a>
     </div>
 
 </div>
