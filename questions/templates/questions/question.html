@@ -3,38 +3,27 @@
 {% load static %}
 {% block content %}
 
+<!-- 未実装：
+「解答送信」「解答終了」のurl -->
+
 <div class="container vh-100">
-    <div class="h1 mb-2">第1問</div>
+    <div class="h1 mb-2">第{{user_answers_count}}問</div>
     
-    <div class="h-50 border rounded overflow-auto">問題文</div>
+    <div class="h-50 border rounded overflow-auto">{{question_content}}</div>
     
-    <form action="" method="POST" class="mt-5">
-      
+    <form action="{% url '解答送信' question_id  %}" method="POST" class="mt-5">
+        {% csrf_token %}
+        {% for key, value in question_choices %}
         <div class="d-flex align-items-center">
-        <button type="submit" class="btn btn-dark" name="answer" value=0>ア</button>
-        <div class="">アの選択肢</div>
-      </div>
-      
-      <div class="d-flex align-items-center">
-        <button type="submit" class="btn btn-dark" name="answer" value=1>イ</button>
-        <div class="">イの選択肢</div>
-      </div>    
-      
-      <div class="d-flex align-items-center">
-        <button type="submit" class="btn btn-dark" name="answer" value=2>ウ</button>
-        <div class="">ウの選択肢</div>
-      </div> 
-      
-      <div class="d-flex align-items-center">
-        <button type="submit" class="btn btn-dark" name="answer" value=3>エ</button>
-        <div class="">エの選択肢</div>
-      </div>
-    
+          <button type="submit" class="btn btn-dark" name="answer" value={{key}}>{{key}}</button>
+          <div class="">{{value}}</div>
+        </div>
+        {% endfor %}
     </form>
   
     <div class="d-flex justify-content-center gap-3">
-      <button type="button" class="btn btn-secondary" href="">解答終了</button>
-      <button type="button" class="btn btn-danger" href="">中断</button>
+      <button type="button" class="btn btn-secondary" href="{% url '解答終了' %}">解答終了</button>
+      <button type="button" class="btn btn-danger" href="{% url 'home' %}">中断</button>
     </div>
 </div>
 
