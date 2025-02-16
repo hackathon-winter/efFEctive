@@ -1,7 +1,7 @@
 import json
-from djando.core.exceptions import ObjectDoesNotExit
+from django.core.exceptions import ObjectDoesNotExit
 from django.utils.timezone import now
-from questions.models.import Question
+from questions.models import Question
 from questions.data import QUESTIONS_DATA
 
 def load_question():
@@ -15,9 +15,9 @@ def load_question():
                 content=question_data['content'],
                 choices=question_data['choices'],
                 correct_answer=question_data['correct_answer'],
-                explanation=question_data('explanation'),
-                difficulty=question_data('difficulty'),
-                category=question_data('category'),
+                explanation=question_data['explanation'],
+                difficulty=question_data['difficulty'],
+                category=question_data['category'],
                 created_at=now()
             )
             print(f'登録に成功しました。: {question_data["content"]}')
