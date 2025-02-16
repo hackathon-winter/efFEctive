@@ -15,16 +15,16 @@
             <thead>
                 <tr>
                     <th>No.</th>
-                    {% for i in range(total_answers)  %}
-                    <th><a href="{% url '解答表示'  %}">{{i+1}}</a></th>
+                    {% for _ in total_answers %}
+                    <th><a href="{% url '解答表示' %}">{{forloop.counter}}</a></th>
                     {% endfor %}
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <th>正誤</th>
-                    {% for i in range(total_answers)  %}
-                    <td>{% "◯" if results[i]["is_correct"] else "×" %}</td>
+                    {% for result in results  %}
+                    <td>{{ result["is_correct"]|yesno: "◯, ×" }}</td>
                     {% endfor %}
                 </tr>
             </tbody>

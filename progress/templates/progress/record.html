@@ -1,0 +1,40 @@
+<!-- 学習履歴画面 -->
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container vh-100">
+
+    <!-- 円グラフを表示する実装を追記する -->
+
+    <!-- 各回の結果を表として描画 -->
+    {% for answers in session_answers %}
+    <div>{{session_times[forloop.counter0]}}</div>
+    <div class="table-responsive">
+        <table class="table table-bordered text-center">
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    {% for _ in answers %}
+                    <th>{{loop.counter}}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>正誤</th>
+                    {% for answer in answers  %}
+                    <td>{% answer|yesno:"◯, ×" %}</td>
+                    {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    {% endfor %}
+
+    <!-- answers: 各セッションにおける正誤を格納した配列
+    　　　answer: 1問ごとの正誤 -->
+
+</div>
+ 
+{% endblock %}
