@@ -12,7 +12,7 @@
 
     <!-- 各回の結果を表として描画 -->
     {% for answers in session_answers %}
-    <div>{{session_times[forloop.counter0]}}</div>
+    <div>{{session_times[forloop.counter0]}} 正答率{{ sum(answers) / len(answers) * 100}}%（{{sum(answers)}}問／{{len(answers)}}問）</div>
     <div class="table-responsive">
         <table class="table table-bordered text-center">
             <thead>
