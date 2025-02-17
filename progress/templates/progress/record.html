@@ -26,7 +26,7 @@
             <tbody>
                 <tr>
                     <th>正誤</th>
-                    {% for answer in answers  %}
+                    {% for answer in answers %}
                     <td>{% answer|yesno:"◯, ×" %}</td>
                     {% endfor %}
                 </tr>
