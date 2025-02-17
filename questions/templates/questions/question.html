@@ -11,9 +11,11 @@
     <form action="{% url 'answer_save' question_id=question_id %}" method="POST" class="mt-5">
       {% csrf_token %}
       
-      {% for index, choice in question_choices %}
-        <div class="d-flex align-items-center">
-          <button type="submit" class="btn btn-dark" name="answer" value="{{ index }}">{{ choice }}</button>
+      {% for choice in question_choices %}
+        <div class="d-flex align-items-center mb-2">
+          <button type="submit" class="btn btn-dark" name="answer" value="{{ index }}">{{ choice.0 }}
+            {{ choice.0 }}. {{ choice.1 }}
+          </button>  
         </div>
       {% endfor %}
     
@@ -21,11 +23,12 @@
   
     <div class="d-flex justify-content-center gap-3">
       <!-- 解答終了 -->
-      <a  href="{% url 'home' %}" type="button" class="btn btn-secondary">解答終了</a>
+      <a  href="{% url 'home' %}" class="btn btn-secondary">解答終了</a>
       <!-- 中断 -->
-      <form action="{% url 'end_sesion' %}" method="POST">
+      <form action="{% url 'end_session' %}" method="POST">
         {% csrf_token %}
         <button type="submit" class="btn btn-danger">中断</button> 
+      </form>
     </div>
 </div>
 
