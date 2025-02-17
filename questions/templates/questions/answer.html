@@ -3,26 +3,26 @@
 {% load static %}
 {% block content %}
 
-<!-- 未実装：
-・「次の問題へ」「解答終了」のurl
-・解答終了時画面や学習履歴画面から遷移した際の「戻る」ボタン -->
-
 <div class="container vh-100">
-
-    {% if is_correct %}
-    <div class="h1 text-center text-danger">正解!</div>    
-    {% else %}
-    <div class="h1 text-center">残念…</div>    
-    <div>あなたの解答：{{answer}}</div>
-    <div>正解：{{correct_answer}}</div>
-    {% endif %}
+    <div class="d-flex justify-content-center">
+        {% if is_correct" %}
+            <div class="h1">正解！</div>
+        {% else %}
+            <div class="h1">残念…</div>
+        {% endif %}    
+    </div>
+      
+    <div>あなたの解答：<strong>{{ selected_answer }}</strong></div>
+    <div>正解：<storong>{{ correct_answer }}</storong> </div>
+    
+    <div class=mt-3>解説：</div>    
+    <div class="border rounded h-50 overflow-auto mb-5">{{ explanation }}</div>
 
     <div class="d-flex justify-content-center gap-3">
-        <button type="button" class="btn btn-dark" href="{% url '次の問題へ' %}">次の問題へ</button>
-        <button type="button" class="btn btn-secondary" href="{% url '解答終了' %}">解答終了</button>
-        <button type="button" class="btn btn-danger" href="{% url 'home' %}">中断</button>
-    </div>
-    
+        <a href="{% url 'list_questions' %}" class="btn btn-dark">次の問題へ</a>
+        <a href="{% url 'home' %}" class="btn btn-secondary">解答終了</a>
+        <a href="{% url 'home' %}" class="btn btn-danger">中断</a>
+    </div>    
 </div>
 
 {% endblock %}

@@ -11,9 +11,8 @@ class Session(models.Model):
     end_time = models.DateTimeField(null=True, verbose_name="セッション終了日時")
     created_at = models.DateTimeField(default=now, verbose_name="作成日時")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="更新日時")
-    session_end = models.BooleanField(verbose_name='セッションが終了しているか')
+    session_end = models.DateTimeField(null=True, blank=True, verbose_name='セッション終了日時')
 
-    @property
     def progress_percentage(self):
         if self.total_questions > 0:
             return(self.correct_answers / self.total_questions)* 100
