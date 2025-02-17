@@ -40,4 +40,4 @@ def ranking(request):
     #ポイントで降順にしユーザーとソート
     user_ranking = list(User.objects.filter(is_staff=False).values_list('user_name','point').order_by('-point'))
 
-    return render(request,'test.html',{'user_ranking':user_ranking}) 
+    return render(request,'ランキング表示用HTML',{'user_ranking':user_ranking}) 
