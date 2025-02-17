@@ -1,78 +1,109 @@
-from django.shortcuts import render
-from django.shortcuts import redirect
-from datetime import datetime
-#モデルをインポート
+import random
+from django.shortcuts import render, redirect, get_object_or_404
+from django.utils.timezone import now
 from django.contrib.auth.decorators import login_required
 from progress.models import Session
 from .models import Answer,Question
+from .data import QUESTIONS_DATA
 
-# Create your views here.
+NORMAL = "normal"
+HARD = "hard"
 
 @login_required
 def list_questions(request):
-    #最新のセッションが終了しているかを取得
-    user = request.user.id  #ユーザーid取得   
-    #最新のセッションが終了しているかを取得
-    user_session_end = Session.objects.filter(user=user).values_list('session_end',flat=True).order_by('-created_at').first()
-    #最新のセッションが終了している場合、セッションを作成
-    if user_session_end == True:
-        now = datetime.now()
-        user_info = request.user
-        make_session = Session(user=user_info,correct_answers=0,total_questions=0,start_time=now,created_at=now)
-        make_session.save()  
-    #ユーザーの最新の進捗を取得
-    user_session = Session.objects.filter(user=user).values_list('session_id',flat=True).order_by('-created_at').first()
-    #問題解答数を取得
-    user_answers_count = Answer.objects.filter(session=user_session).count()
-    #直近の問題の正答を取得
-    user_answers = Answer.objects.filter(session=user_session).values('is_correct').order_by('-created_at')[:3]
-    sum_answer =  user_answers.count()
-    user_answers = sum(item['is_correct'] for item in user_answers)
 
-    #難易度の設定
-    if user_answers >= 3:
-        question_difficult = 'hard'
-    else:
-        question_difficult = 'normal'
-    #難易度から問題をランダムに取得
-    question = Question.objects.filter(difficulty=question_difficult).order_by('?').first()
-    #問題のID、内容、選択肢を格納
-    question_id = question.id
-    question_content = question.content
-    question_choices = list(question.choices.items())
+    #ユーザー情報、現在の日時を取得
+    user = request.user
+    now_time = now()
 
-    return render(request,'問題表示用HTML', {'user_answers_count':user_answers_count,'question_id':question.id,'question_content':question_content,'question_choices':question_choices}) 
+    #最新のセッション(正答数、総問題数、難易度)を取得
+    latest_session = Session.objects.filter(user=user, session_end=False).order_by('-created_at').first()
+
+    #進行中のセッションがない場合、セッションを新規作成
+    if not latest_session:
+        previous_session = Session.objects.filter(user=user).order_by('-created_at').first()
+        previous_difficulty = previous_session.current_difficulty if previous_session else 'normal'
+
+        latest_session = Session.objects.create(
+            user=user,
+            correct_answers=0,
+            total_questions=0,
+            consecutive_correct=0,
+            current_difficulty=previous_difficulty,
+            previous_difficulty=previous_difficulty,
+            session_end=False,
+            start_time=now(),
+            created_at=now()
+        ) 
+
+    #難易度に応じた問題をランダムに取得
+    filtered_questions = [q for q in QUESTIONS_DATA if q['difficulty'] == latest_session.current_difficulty]
+    question_data = random.choice(filtered_questions) if filtered_questions else None
+
+    if not question_data:
+        return render(request, 'error.html', {'message': '問題が見つかりません。'})
+
+    return render(request,'question.html', {
+        'question_number':latest_session.total_questions + 1,
+        'question_id':question_data['id'],
+        'question_content':question_data['content'],
+        'question_choices':question_data['choices'],
+        'difficulty':latest_session.current_difficulty,
+        }) 
 
 @login_required
 def answer_save(request,question_id):
 
     if request.method == "POST":
+        start_time = now()
+        user = request.user
+        latest_session = Session.objects.filter(user=user).order_by('-created_at').first()
+
+        if not latest_session:
+            return render('list_questions')
+        
+        #問題を取得
+        question = get_object_or_404(Question, id=question_id)
+        correct_answer = question.correct_answer
+
         #ユーザーが解答した内容を取得
-        answer = request.POST.get('answer', '')  
-        #question_idを取得
-        question_id = request.POST.get('question_id', '')  
-        #ユーザーid取得
-        user = request.user.id
-        #ユーザーの最新の進捗を取得
-        user_session = Session.objects.filter(user=user).values_list('session_id',flat=True).order_by('-created_at').first()
-        session = Session.objects.get(session_id=user_session)
-        #questionインスタンスを取得
-        question = Question.objects.get(id=question_id)
-        #問題の答えを取得
-        question_correct = Question.objects.filter(id=question_id).values_list('correct_answer',flat=True)
-        #ユーザーの解答が正解だった場合、セッションの正答数を更新
-        if answer == question_correct[0]:
-            is_correct = True
-            session.correct_answers = session.correct_answers + 1 
-            session.save()
+        selected_answer = request.POST.get('answer', '')  
+
+        #正誤判定
+        is_correct = selected_answer == correct_answer
+
+        #ユーザーの最新の進捗を取得(セッションの正答数、総問題数を更新)
+        latest_session.total_questions += 1
+        if is_correct:
+            latest_session.correct_answers += 1
+            latest_session.consecutive_correct += 1
         else:
-            is_correct = False
-        #セッションの総問題数を更新
-        session.total_questions = session.total_questions + 1
-        session.save()
+            latest_session.consecutive_correct = 0
+
+        #難易度自動調整
+        if latest_session.consecutive_correct >= 3:
+            latest_session.current_difficulty = HARD
+        elif latest_session.consecutive_correct == 0:
+            latest_session.current_difficulty = NORMAL
+        
+        latest_session.save()
+
+        #ユーザーの解答時間を取得
+        time_taken = (now() - start_time).total_seconds()
+
         #ユーザーの解答を保存
-        answer = Answer(session=session,question=question,selected_answer=answer,is_correct=is_correct,time_taken=1)
-        answer.save()
+        Answer.objects.create(
+            session=latest_session,
+            question=question,
+            selected_answer=selected_answer,
+            is_correct=is_correct,
+            time_taken=time_taken
+        )
+        return redirect('list_questions') 
        
     return redirect('list_questions') 
 
+@login_required
+def question_detail(request, question_id):
+    question = get_object_or_404(Question, id=question_id)
+    return render(request, 'questions/question_detail.html', {'question':question})

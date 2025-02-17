@@ -5,6 +5,7 @@
     <img src="https://raw.githubusercontent.com/CSS-Next/logo.css/main/css.svg" alt="CSS" width="60" height="60"/>
     <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/JavaScript.svg" alt="JavaScript" width="60" height="60"/>
     <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/Django.svg" alt="Django" width="60" height="60"/>
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" width="60" height="60"/>
     <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/Docker.svg" alt="Docker" width="60" height="60"/>
     <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/AWS-Dark.svg" alt="AWS" width="60" height="60"/>
     <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/Figma-Dark.svg" alt="Figma" width="60" height="60"/>
