@@ -1,8 +1,13 @@
+import random
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.timezone import now
 from django.contrib.auth.decorators import login_required
 from progress.models import Session
 from .models import Answer,Question
+from .data import QUESTIONS_DATA
+
+NORMAL = "normal"
+HARD = "hard"
 
 @login_required
 def list_questions(request):
@@ -19,28 +24,30 @@ def list_questions(request):
         previous_session = Session.objects.filter(user=user).order_by('-created_at').first()
         previous_difficulty = previous_session.current_difficulty if previous_session else 'normal'
 
-       latest_session = Session.objects.create(
-        user=user,
-        correct_answers=0,
-        total_questions=0,
-        consecutive_correct=0,
-        current_difficulty=previous_difficulty,
-        previous_difficulty=previous_difficulty,
-        session_end=False,
-        start_time=now(),
-        created_at=now()
+        latest_session = Session.objects.create(
+            user=user,
+            correct_answers=0,
+            total_questions=0,
+            consecutive_correct=0,
+            current_difficulty=previous_difficulty,
+            previous_difficulty=previous_difficulty,
+            session_end=False,
+            start_time=now(),
+            created_at=now()
         ) 
 
     #難易度に応じた問題をランダムに取得
-    question = Question.objects.filter(difficulty=latest_session.current_difficulty).order_by('?').first()
-    if not question:
-        return render(request, 'エラーページ.html', {'message': '問題が見つかりません。'})
+    filtered_questions = [q for q in QUESTIONS_DATA if q['difficulty'] == latest_session.current_difficulty]
+    question_data = random.choice(filtered_questions) if filtered_questions else None
 
-    return render(request,'問題表示用HTML', {
-        'user_answers_count':Answer.objects.filter(session=latest_session).count(),
-        'question_id':question.id,
-        'question_content':question.content,
-        'question_choices':question.choices,
+    if not question_data:
+        return render(request, 'error.html', {'message': '問題が見つかりません。'})
+
+    return render(request,'question.html', {
+        'question_number':latest_session.total_questions + 1,
+        'question_id':question_data['id'],
+        'question_content':question_data['content'],
+        'question_choices':question_data['choices'],
         'difficulty':latest_session.current_difficulty,
         }) 
 
@@ -75,9 +82,9 @@ def answer_save(request,question_id):
 
         #難易度自動調整
         if latest_session.consecutive_correct >= 3:
-            latest_session.current_difficulty = 'hard'
+            latest_session.current_difficulty = HARD
         elif latest_session.consecutive_correct == 0:
-            latest_session.current_difficulty = 'normal'
+            latest_session.current_difficulty = NORMAL
         
         latest_session.save()
 
@@ -96,3 +103,7 @@ def answer_save(request,question_id):
        
     return redirect('list_questions') 
 
+@login_required
+def question_detail(request, question_id):
+    question = get_object_or_404(Question, id=question_id)
+    return render(request, 'questions/question_detail.html', {'question':question})
