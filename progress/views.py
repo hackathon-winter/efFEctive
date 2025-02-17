@@ -4,6 +4,7 @@ from django.http import HttpResponse
 
 #モデルをインポート
 from .models import Session
+from authentication.models import User
 from questions.models import Answer
 
 @login_required
@@ -27,6 +28,16 @@ def view_progress(request):
     count_of_true = sum(sublist.count(True) for sublist in list(session_answers))
     count_of_false = sum(sublist.count(False) for sublist in list(session_answers))
     sum_answer = count_of_true + count_of_false
-    true_rate = count_of_true / sum_answer * 100
+    if count_of_true == 0 or sum_answer == 0:
+        true_rate = 0
+    else:
+        true_rate = count_of_true / sum_answer * 100
 
-    return render(request,'進捗確認のHTML', {'session_answers': session_answers,'session_times':session_times,'true_rate':true_rate,'sum_answer':sum_answer,'count_of_true':count_of_true}) 
+    return render(request,'test.html', {'session_answers': session_answers,'session_times':session_times,'true_rate':true_rate,'sum_answer':sum_answer,'count_of_true':count_of_true}) 
+
+@login_required
+def ranking(request):
+    #ポイントで降順にしユーザーとソート
+    user_ranking = list(User.objects.filter(is_staff=False).values_list('user_name','point').order_by('-point'))
+
+    return render(request,'ランキング表示用HTML',{'user_ranking':user_ranking}) 

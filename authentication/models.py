@@ -48,6 +48,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     google_authenticated = models.BooleanField(default=False, verbose_name='Google認証ユーザー')
     is_staff = models.BooleanField(default=False, verbose_name='スタッフ権限')  # 必須
     is_active = models.BooleanField(default=True, verbose_name='アクティブ状態')  # 必須
+    point =models.IntegerField(default=0,verbose_name="ポイント")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='作成日時')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='更新日時')
 
