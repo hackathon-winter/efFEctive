@@ -15,8 +15,8 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-dark-subtle sticky-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="">efFEctive</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="modal" data-bs-target="#menuModal" aria-controls="menuModal" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand" href="{% url 'home' %}">efFEctive</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="modal" data-bs-target="#menuModal" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
         </div>
@@ -35,13 +35,13 @@
                             <a class="nav-link" aria-current="page" href="{% url 'home' %}">ホーム画面</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">問題演習</a>
+                            <a class="nav-link" href="{% url 'list_questions' %}">問題演習</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">学習履歴</a>
+                            <a class="nav-link" href="{% url 'learning_history' %}">学習履歴</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">ランキング</a>
+                            <a class="nav-link" href="{% url 'ranking' %}">ランキング</a>
                         </li>                     
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'logout' %}">ログアウト</a>
