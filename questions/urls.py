@@ -5,5 +5,6 @@ urlpatterns = [
     path('questions/', views.list_questions, name='list_questions'),
     path('questions/<int:question_id>', views.question_detail, name='question_detail'),
     path('questions/<int:question_id>/answer/', views.answer_save, name='answer_save'),
-    path('questions/submit/', views.submit_answer, name='submit_answer'),
+    # path('questions/submit/', views.submit_answer, name='submit_answer'),
+    # path('session/end/', views.answer_save, name='end_session'), 
 ]
