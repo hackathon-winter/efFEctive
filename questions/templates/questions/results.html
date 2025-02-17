@@ -6,7 +6,7 @@
 <div class="container">
     <div class="h2 text-center">お疲れ様でした！！</div>
     <div class="h2 text-center">
-        今回の成績：正答率{{ accuracy }}％（{{ correct_answer}}／{{ total_questions}}問）
+        今回の成績：正答率{{ accuracy }}％（{{ correct_answer }}／{{ total_questions }}問）
     </div>
     
     <div class="table-responsive">
@@ -15,7 +15,7 @@
                 <tr>
                     <th>No.</th>
                     {% for result in results %}
-                        <th><a href="{{% url 'question_detail' question_id=result.question.id %}}">{{ forloop.counter}}</a></th>
+                        <th><a href="{% url 'question_detail' question_id=result.question.id %}">{{ forloop.counter}}</a></th>
                     {% endfor %}
                 </tr>
             </thead>
@@ -31,7 +31,7 @@
     </div>
     
     <div class="text-center">
-        <a href="{% url 'home' %}"class="btn btn-dark">ホーム画面へ</a>
+        <a href="{% url 'home' %}" class="btn btn-dark">ホーム画面へ</a>
     </div>
 
 </div>
