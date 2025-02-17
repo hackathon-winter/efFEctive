@@ -1,0 +1,75 @@
+<!-- 学習履歴画面 -->
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="container vh-100">
+
+    <!-- 累計正答率のグラフ -->
+    <div class="row align-items-center">
+        <div class="col col-3">
+            <canvas id="accuracyChart"></canvas>
+        </div>
+        <div class="col h2">累計正答率{{true_rate}}％<br>（{{count_of_true}}問／{{sum_answer}}問）</div>
+    </div>
+
+    <!-- 各回の結果を表として描画 -->
+    {% for answers in session_answers %}
+    <div>{{session_times[forloop.counter0]}} 正答率{{ sum(answers) / len(answers) * 100}}%（{{sum(answers)}}問／{{len(answers)}}問）</div>
+    <div class="table-responsive">
+        <table class="table table-bordered text-center">
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    {% for _ in answers %}
+                    <th>{{loop.counter}}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>正誤</th>
+                    {% for answer in answers %}
+                    <td>{% answer|yesno:"◯, ×" %}</td>
+                    {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    {% endfor %}
+
+    <!-- answers: 各セッションにおける正誤を格納した配列
+    　　　answer: 1問ごとの正誤 -->
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+            const ctx = document.getElementById("accuracyChart");
+
+            const correctAnswers = {{count_of_true}};
+            const incorrectAnswers = {{sum_answer}} - {{count_of_true}};
+
+            new Chart(ctx, {
+                type: "pie",
+                data: {
+                    labels: ["正答", "誤答"],
+                    datasets: [{
+                        data: [correctAnswers, incorrectAnswers],
+                        backgroundColor: ['#ff4d4d', '#3366ff']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+        });
+</script>
+ 
+{% endblock %}
