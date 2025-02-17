@@ -3,13 +3,19 @@
 {% load static %}
 {% block content %}
 
-<!-- 未実装：
-・ -->
+<!-- 未実装：リワード周り -->
 
-<div class="container vh-100">
-
-
-    
+<div class="container">
+    <div class="list-group">
+        {% for user in ranking %}  
+        <div class="list-group-item d-flex justify-content-between align-items-center">
+            <div>{{forloop.counter}}位</div>
+            <div class="">{{user["username"]}}</div>
+            <div class=""></div> <!-- バッジ用スペース -->
+            <div class="">{{user["score"]}}pt</div>
+        </div>
+        {% endfor %}
+    </div> 
 </div>
-
+  
 {% endblock %}
