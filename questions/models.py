@@ -31,7 +31,7 @@ class Question(models.Model):
     correct_answer = models.CharField(max_length=255, verbose_name='正解')
     explanation =models.TextField(verbose_name='解説', null=True, blank=True)
     difficulty = models.CharField(max_length=10, choices=DIFFICULTY_CHOICES, verbose_name='難易度', default ='normal')
-    category = models.CharField(max_length=50, choices=CATEGORY_CHOICES, verbose_name='カテゴリ')
+    category = models.CharField(max_length=50, choices=CATEGORY_CHOICES, default='fundamental_theory', verbose_name='カテゴリ')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='問題作成日時')
 
     def __str__(self):
