@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'authentication',
     'questions',
     'progress',
+    'rewards',
 ]
 
 MIDDLEWARE = [

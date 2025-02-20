@@ -69,7 +69,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = CustomUserManager()
 
     USERNAME_FIELD = 'email'  # ログインに使用するフィールド
-    REQUIRED_FIELDS = ['user_name']  # スーパーユーザー作成時に必須フィールド
+    REQUIRED_FIELDS = []  # スーパーユーザー作成時に必須フィールド
 
     class Meta:
         verbose_name = 'ユーザー'

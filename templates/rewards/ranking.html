@@ -9,10 +9,10 @@
     <div class="list-group">
         {% for user in ranking %}  
         <div class="list-group-item d-flex justify-content-between align-items-center">
-            <div>{{forloop.counter}}位</div>
-            <div class="">{{user["username"]}}</div>
+            <div>{{ forloop.counter }}位</div>
+            <div class="">{{ user.0 }}</div>
             <div class=""></div> <!-- バッジ用スペース -->
-            <div class="">{{user["score"]}}pt</div>
+            <div class="">{{ user.1 }}pt</div>
         </div>
         {% endfor %}
     </div> 

@@ -41,19 +41,31 @@
                             <a class="nav-link" href="{% url 'learning_history' %}">学習履歴</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">ランキング</a>
+                            <a class="nav-link" href="{% url 'ranking' %}">ランキング</a>
                         </li>                     
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'logout' %}">ログアウト</a>
+                            <a class="nav-link" href="javascript:void(0);" onclick="logoutUser()">ログアウト</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
+
+    <form id="logout-form" action="{% url 'logout'}" method="POST" style="display: none;" >
+        {% csrf_token %}
+    </form>
+
     <main>
         {% block content %}{% endblock %}
     </main>
     
+    <script>
+        function logoutUser(event) {
+            event.preventDefault();
+            document.getElementById("logout-form").submit();
+        }
+    </script>
+
 </body>
 </html>
