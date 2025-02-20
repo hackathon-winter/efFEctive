@@ -9,9 +9,9 @@
             <div class="col-md-4">
                 <div class="card shadow p-4">
                     <a class="btn btn-secondary mb-3" data-bs-toggle="modal" data-bs-target="#selectModeModal">問題演習</a>
-                    <a class="btn btn-secondary mb-3" href="">学習履歴</a>
-                    <a class="btn btn-secondary mb-3" href="">ランキング</a>
-                    <a class="btn btn-secondary" href="{% url 'logout' %}">ログアウト</a>
+                    <a class="btn btn-secondary mb-3" href="{% url 'learning_history' %}">学習履歴</a>
+                    <a class="btn btn-secondary mb-3" href="{% url 'ranking' %}">ランキング</a>
+                    <button class="btn btn-secondary" onclick="logoutUser()">ログアウト</button>
                 </div>
             </div>
         </div>
@@ -27,6 +27,8 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+        <form id="select-subject-form" method="POST" action="{% url 'list_questions' %}">
+          {% csrf_token %}
         <div class="form-check">
           <input class="form-check-input" type="radio" name="subject" value="A" checked>
           <label class="form-check-label">科目A</label>
@@ -35,10 +37,13 @@
           <input class="form-check-input" type="radio" name="subject" value="B">
           <label class="form-check-label">科目B</label>
         </div>
-              </div>
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-primary" href="">スタート</button>
-        <a type="button" class="btn btn-secondary" href="">続きから始める</b>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">スタート</button>
+        </div>
+        </form>
+        <div class="modal-footer">
+        <a class="btn btn-secondary" href="{% url 'continue_questions' %}">続きから始める</b>
+        </div>
       </div>
     </div>
   </div>
