@@ -15,16 +15,20 @@ def login_view(request):
 
         user = authenticate(request, email=email, password=password)
         if user:
-           login(request, user)
-           messages.success(request, 'ログインが成功しました。')
-           return redirect('home')
+            
+            storage = messages.get_messages(request)            
+            storage.used = True
+
+            login(request, user)
+            messages.success(request, 'ログインが成功しました。')
+            return redirect('home')
         else:
             messages.error(request, 'メールアドレスまたはパスワードが間違っています。')
             return redirect('login')
 
     return render (request, 'authentication/login.html')
 
-@csrf_exempt
+@csrf_protect
 def logout_view(request):
     if request.method == 'POST':
         logout(request)
