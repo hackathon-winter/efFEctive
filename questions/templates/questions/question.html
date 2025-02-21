@@ -7,19 +7,23 @@
     <div class="h1 mb-2">第{{ question_number }}問</div>
     
     <div class="h-50 border rounded overflow-auto">{{ question_content }}</div>
-    
-    <form action="{% url 'answer_save' question_id=question_id %}" method="POST" class="mt-5">
+  
+  {% if question_id %}
+    <form action="{% url 'answer_save' question_id=question_id|default:0 %}" method="POST" class="mt-5">
       {% csrf_token %}
       
       {% for choice in question_choices %}
         <div class="d-flex align-items-center mb-2">
-          <button type="submit" class="btn btn-dark" name="answer" value="{{ index }}">{{ choice.0 }}
+          <button type="submit" class="btn btn-dark" name="answer" value="{{ forloop.counter0 }}">
             {{ choice.0 }}. {{ choice.1 }}
           </button>  
         </div>
       {% endfor %}
     
     </form>
+  {% else %}
+    <p class="text-danger">問題IDを取得することができませんでした。</p>
+  {% endif %}
   
     <div class="d-flex justify-content-center gap-3">
       <!-- 解答終了 -->
