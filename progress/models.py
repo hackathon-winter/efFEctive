@@ -33,6 +33,9 @@ class Session(models.Model):
         verbose_name='前回の難易度',
     )
 
+    consective_correct = models.IntegerField(default=0, verbose_name='連続正解数')
+    current_difficulty = models.CharField(max_length=10, choices=DIFFICULTY_CHOICES, default='normal', verbose_name='現在の難易度')
+
     def progress_percentage(self):
         if self.total_questions > 0:
             return(self.correct_answers / self.total_questions)* 100
