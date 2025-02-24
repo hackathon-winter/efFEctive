@@ -1,9 +1,8 @@
-{% extends 'base.html %'}
 {% block content %}
 
 <div class="container mt-5">
     <h2 class="text-danger">エラー</h2>
-    <p>{{% message %}}</p>
-    <a href="{% url 'list_questions' %}" class="btn-primary">問題一覧へ戻る</a>
+    <p>{{ message }}</p>
+    <a href="{% url 'home' %}" class="btn-primary">ホーム画面へ戻る</a>
 </div>
 {% endblock %}
