@@ -12,15 +12,10 @@ HARD = 'hard'
 
 @login_required
 def list_questions(request, difficulty=NORMAL):
-
-    #ユーザー情報、現在の日時を取得
     user = request.user
-    now_time = now()
 
-    #最新のセッション(正答数、総問題数、難易度)を取得
+    # 最新のセッションを取得（なければ作成）
     latest_session = Session.objects.filter(user=user).order_by('-created_at').first()
-
-    #進行中のセッションがない場合、セッションを新規作成
     if not latest_session:
         latest_session = Session.objects.create(
             user=user,
@@ -32,57 +27,51 @@ def list_questions(request, difficulty=NORMAL):
             current_difficulty=difficulty,
             previous_difficulty=difficulty,
             start_time=now()
-        ) 
+        )
 
-    #難易度に応じた問題をランダムに取得
+    # 現在の難易度に対応する問題一覧を取得
     filtered_questions = [q for q in QUESTIONS_DATA if q['difficulty'] == latest_session.current_difficulty]
-    question_data = random.choice(filtered_questions) if filtered_questions else None
 
-    if not question_data:
-        return render(request, 'error.html', {'message': '問題が見つかりません。'})
+    # 解答済みでない問題のみを取得
+    unanswered_questions = [
+        q for q in filtered_questions
+        if q['id'] not in latest_session.session_answers
+    ]
 
-    return render(request,'questions/question.html', {
-        'question_number':latest_session.total_questions + 1,
-        'question_id':question_data['id'],
-        'question_content':question_data['content'],
-        'question_choices':question_data['choices'],
-        'difficulty':latest_session.current_difficulty,
-    }) 
+    # 未解答の問題がなければ結果画面へ遷移
+    if not unanswered_questions:
+        return redirect('result_page')
 
-@login_required
-def continue_questions(request):
+    question_data = random.choice(unanswered_questions)
 
-    user = request.user
-    latest_session = Session.objects.filter(user=user).order_by('-created_at').first()
-
-    if latest_session:
-        difficulty = latest_session.current_difficulty
-        return redirect('list_questions_with_difficulty', difficulty=difficulty)
-    else:
-        return redirect('list_questions')
+    return render(request, 'questions/question.html', {
+        'question_number': latest_session.total_questions + 1,
+        'question_id': question_data['id'],
+        'question_content': question_data['content'],
+        'question_choices': question_data['choices'],
+        'difficulty': latest_session.current_difficulty,
+    })
 
 @login_required
-def answer_save(request,question_id):
-
+def answer_save(request, question_id):
     if request.method == "POST":
-        start_time = now()
         user = request.user
-        
+        start_time = now()
+
+        # 最新のセッションを取得
         latest_session = Session.objects.filter(user=user).order_by('-created_at').first()
         if not latest_session:
             return redirect('list_questions')
-        
-        #問題を取得
+
         question = get_object_or_404(Question, id=question_id)
         correct_answer = question.correct_answer
 
-        #ユーザーが解答した内容を取得
-        selected_answer = request.POST.get('answer', '')  
+        selected_answer = request.POST.get('answer', '')
 
-        #正誤判定
-        is_correct = selected_answer == correct_answer
+        # 正誤判定
+        is_correct = (selected_answer == correct_answer)
 
-        #ユーザーの最新の進捗を取得(セッションの正答数、総問題数を更新)
+        # セッションの正答数や連続正解数を更新
         latest_session.total_questions += 1
         if is_correct:
             latest_session.correct_answers += 1
@@ -90,18 +79,19 @@ def answer_save(request,question_id):
         else:
             latest_session.consecutive_correct = 0
 
-        #難易度自動調整
+        # 難易度の自動調整（連続正解3回でHARD、間違えたらNORMALにリセットする）
         if latest_session.consecutive_correct >= 3:
             latest_session.current_difficulty = HARD
         elif latest_session.consecutive_correct == 0:
             latest_session.current_difficulty = NORMAL
-        
+
+        if question_id not in latest_session.session_answers:
+            latest_session.session_answers.append(question_id)
+
         latest_session.save()
 
-        #ユーザーの解答時間を取得
         time_taken = (now() - start_time).total_seconds()
 
-        #ユーザーの解答を保存
         Answer.objects.create(
             session=latest_session,
             question=question,
@@ -112,27 +102,56 @@ def answer_save(request,question_id):
 
         check_and_award_badges(user, question.category)
 
-        return redirect('answer_result', question_id=question.id) 
-       
+        return redirect('answer_result', question_id=question.id)
+
     return redirect('list_questions')
 
 @login_required
 def answer_result(request, question_id):
 
-    question = get_object_or_404(Question, id=question_id)
     user = request.user
+    question = get_object_or_404(Question, id=question_id)
 
-    #最新の解答データを取得
-    latest_answer = Answer.objects.filter(session__user=user, question=question).order_by('-created_at').first()
+    latest_answer = Answer.objects.filter(
+        session__user=user,
+        question=question
+    ).order_by('-created_at').first()
 
     if not latest_answer:
         return redirect('list_questions')
-    
+
     context = {
         'selected_answer': latest_answer.selected_answer,
         'correct_answer': question.correct_answer,
         'explanation': question.explanation,
         'is_correct': latest_answer.is_correct
     }
-
     return render(request, 'questions/answer.html', context)
+
+@login_required
+def result_page(request):
+
+    user = request.user
+    latest_session = Session.objects.filter(user=user).order_by('-created_at').first()
+
+    if not latest_session:
+        return redirect('list_questions')
+
+    # セッション情報から正答率を計算する
+    total_questions = latest_session.total_questions
+    correct_answers = latest_session.correct_answers
+
+    if total_questions > 0:
+        accuracy = (correct_answers / total_questions) * 100
+    else:
+        accuracy = 0
+
+    answers = Answer.objects.filter(session=latest_session).order_by('id')
+
+    context = {
+        'accuracy': accuracy,
+        'correct_answer': correct_answers,
+        'total_questions': total_questions,
+        'results': answers
+    }
+    return render(request, 'questions/result.html', context)
