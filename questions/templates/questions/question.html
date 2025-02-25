@@ -14,8 +14,8 @@
       
       {% for choice in question_choices %}
         <div class="d-flex align-items-center mb-2">
-          <button type="submit" class="btn btn-dark" name="answer" value="{{ forloop.counter0 }}">
-            {{ choice.0 }}. {{ choice.1 }}
+          <button type="submit" class="btn btn-dark" name="answer" value="{{ choice.key }}">
+            {{ choice.key }}. {{ choice.text }}
           </button>  
         </div>
       {% endfor %}
