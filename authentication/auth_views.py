@@ -5,6 +5,9 @@ from django.views.decorators.csrf import csrf_protect, csrf_exempt
 
 @csrf_protect
 def login_view(request):
+    storage = messages.get_messages(request)            
+    storage.used = True
+
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
@@ -14,11 +17,8 @@ def login_view(request):
             return redirect('login')
 
         user = authenticate(request, email=email, password=password)
-        if user:
-            
-            storage = messages.get_messages(request)            
-            storage.used = True
 
+        if user:
             login(request, user)
             messages.success(request, 'ログインが成功しました。')
             return redirect('home')
@@ -31,6 +31,9 @@ def login_view(request):
 @csrf_protect
 def logout_view(request):
     if request.method == 'POST':
+        storage = messages.get_messages(request)            
+        storage.used = True
+        
         logout(request)
         messages.success(request, 'ログアウトしました。')
         return redirect('login')
