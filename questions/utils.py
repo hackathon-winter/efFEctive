@@ -1,5 +1,5 @@
 import json
-from django.core.exceptions import ObjectDoesNotExit
+from django.core.exceptions import ObjectDoesNotExist
 from django.utils.timezone import now
 from questions.models import Question
 from questions.data import QUESTIONS_DATA
