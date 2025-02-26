@@ -35,7 +35,7 @@ class Question(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='問題作成日時')
 
     def __str__(self):
-        return f'[{self.get_category_display()}] {self.content[:50]}' if self.category else self.content[:50] # カテゴリ、問題文の先頭50文字を表示
+        return f'[{self.get_category_display()}] {self.content[:50]}'
 
     class Meta:
         verbose_name = '問題'
@@ -47,6 +47,7 @@ class Answer(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE, verbose_name='問題ID')
     selected_answer = models.CharField(max_length=255, verbose_name='ユーザーの選択した回答')
     is_correct = models.BooleanField(verbose_name='正解かどうか', default=False)
+    awarded = models.BooleanField(default=False)
     time_taken = models.FloatField(verbose_name='回答時間（秒）')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='解答日時')
 
