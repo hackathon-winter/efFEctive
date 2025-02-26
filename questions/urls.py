@@ -7,4 +7,5 @@ urlpatterns = [
     path('questions/<int:question_id>/answer/', views.answer_result, name='answer_result'),
     path('continue/', views.continue_questions, name='continue_questions'),
     path('end_session/', views.end_session, name='end_session'),
+    path('result/', views.result_page, name='result_page'),
 ]
