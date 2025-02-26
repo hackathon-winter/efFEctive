@@ -20,11 +20,11 @@ def view_progress(request):
         answer_list = list(Answer.objects.filter(session=session).values_list('is_correct',flat=True))
         correct_answers = sum(answer_list)
         total_count = len(answer_list)
-        accuracy = (correct_count / total_count * 100) if total_count > 0 else 0
+        accuracy = (correct_answers / total_count * 100) if total_count > 0 else 0
 
         #セッションの日時を取得
         session_data.append({
-            'time': session.start_time.strftime('%Y/%m/%d %H:%M:%S') if session.start_time else '不明',
+            'end_time': session.end_time.strftime('%Y/%m/%d %H:%M:%S') if session.end_time else '未完了',
             'answers': answer_list,
             'accuracy': accuracy,
         })
