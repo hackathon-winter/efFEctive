@@ -15,7 +15,7 @@
                 <tr>
                     <th>No.</th>
                     {% for result in results %}
-                        <th><a href="{% url 'question_detail' question_id=result.question.id %}">{{ forloop.counter}}</a></th>
+                        <th><a href="{% url 'answer_result' question_id=result.question.id %}">{{ forloop.counter }}</a></th>
                     {% endfor %}
                 </tr>
             </thead>
