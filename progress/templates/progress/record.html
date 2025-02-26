@@ -19,7 +19,7 @@
     <!-- 各回の結果を表として描画 -->
     {% for answers in session_answers %}
     <div class="mt-4">
-        <h3>{{ session.time }} 正答率 {{ session.accuracy|floatformat:2 }} % ({{ session.answers|length }}問中)</h3>
+        <h3>{{ session.end_time }} 正答率 {{ session.accuracy|floatformat:2 }} % ({{ session.answers|length }}問中)</h3>
 
         <div class="table-responsive">
             <table class="table table-bordered text-center">
