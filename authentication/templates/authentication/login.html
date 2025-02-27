@@ -5,43 +5,35 @@
 
     
 
-<div class="d-flex align-items-center justify-content-center vh-100">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card shadow p-4">
-                    <h3 class="text-center">ログイン</h3>
-                    {% if messages %}
-                    <div>
-                        {% for message in messages %}
-                        <div{% if message.tags %} class="{{ message.tags }}"{% endif %}>
-                            {{ message }}
-                        </div>
-                        {% endfor %}
-                    </div>
-                    {% endif %}
-                    <form method="POST" action="{% url 'login' %}">
-                        {% csrf_token %}
-                        <div class="mb-3">
-                            <label for="email" class="form-label">メールアドレス</label>
-                            <input type="email" class="form-control" name="email" id="email" placeholder="メールアドレスを入力" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">パスワード</label>
-                            <input type="password" class="form-control" name="password" id="password" placeholder="パスワードを入力" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">ログイン</button>
-                    </form>
-            
-                    <form method="POST" action="{% url 'google_login' %}">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-secondary w-100 mt-3">Googleでログイン</button>
-                    </form>
-                    <a class="text-center mt-3" href="{% url 'register' %}">新規ユーザー登録</a>                    
-                </div>
+<div class="wrapper">
+    <h2 style="text-align: center;">ログイン</h2>
+    <div class="form-container">        
+        {% if messages %}
+        <div>
+            {% for message in messages %}
+            <div {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                {{ message }}
             </div>
+            {% endfor %}
         </div>
-    </div>
+        {% endif %}
+        <form method="POST" action="{% url 'login' %}">
+            {% csrf_token %}
+            <label for="email" class="form-label">メールアドレス</label>
+            <input type="email" class="form-control" name="email" id="email" placeholder="メールアドレスを入力" required>
+            
+            <label for="password" class="form-label">パスワード</label>
+            <input type="password" class="form-control" name="password" id="password" placeholder="パスワードを入力" required>
+            
+            <button type="submit" class="button-primary">ログイン</button>
+        </form>
+        
+        <form method="POST" action="{% url 'google_login' %}">
+            {% csrf_token %}
+            <button type="submit" class="button-secondary">Googleでログイン</button>
+        </form>
+        <a href="{% url 'register' %}">新規ユーザー登録</a>
+    </div>                    
 </div>
 
 {% endblock %}
