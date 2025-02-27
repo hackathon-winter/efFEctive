@@ -3,26 +3,23 @@
 {% load static %}
 {% block content %}
 
-<div class="container vh-100">
-    <h1 class="text-center my-4">学習履歴</h1>
+<div class="wrapper">
+    <h1 class="text-center">学習履歴</h1>
 
     <!-- 累計正答率のグラフ -->
-    <div class="row align-items-center">
-        <div class="col-md-4">
-            <canvas id="accuracyChart"></canvas>
-        </div>
-        <div class="col-md-8">
-            <h2>累計正答率{{ true_rate|floatformat:2 }}％ （{{ count_of_true }}問／{{ sum_answer }}問）</h2> 
-        </div>
+    <div class="chart-container">
+        <canvas id="accuracyChart"></canvas>
+        <h2>累計正答率{{ true_rate|floatformat:2 }}％ （{{ count_of_true }}問／{{ sum_answer }}問）</h2> 
     </div>
 
     <!-- 各回の結果を表として描画 -->
-    {% for answers in session_answers %}
-    <div class="mt-4">
-        <h3>{{ session.end_time }} 正答率 {{ session.accuracy|floatformat:2 }} % ({{ session.answers|length }}問中)</h3>
+    <div class="record-table-container">
+        
+        {% for session in session_answers %}
+        <h3>{{ session.time }} 正答率 {{ session.accuracy|floatformat:2 }} % (問／{{ session.answers|length }}問)</h3>
 
         <div class="table-responsive">
-            <table class="table table-bordered text-center">
+            <table class="table">
                 <thead>
                     <tr>
                         <th>No.</th>
@@ -33,7 +30,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <th>正誤</th>
+                        <td>正誤</td>
                         {% for answer in session.answers %}
                         <td>{% if answer %}◯{% else %}×{% endif %}</td>
                         {% endfor %}
@@ -41,8 +38,13 @@
                 </tbody>
             </table>
         </div>
+        {% endfor %}
     </div>
-    {% endfor %}
+
+    <div class="button-group">
+        <a href="{% url 'home' %}" class="button-primary">ホーム画面へ</a>
+    </div>
+    
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
