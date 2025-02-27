@@ -69,7 +69,6 @@
 
 /* 表示領域の指定 */
 .wrapper {
-  background-color: aqua;
   width: 1200px;
   margin: 60px auto;
 }
@@ -83,21 +82,23 @@
   border: 1px solid #1e1c1c6c;
   border-radius: 20px;
   padding: 50px;
-}
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 
-.form-container input {
-  margin-bottom: 20px;
-}
 
-.form-container a {
-  margin-top: 10px;
-  align-self: center;
-}
+  input {
+    margin-bottom: 20px;
+  }
 
-.form-container .button-primary, .form-container .button-secondary {
+  a {
+    margin-top: 10px;
+    align-self: center;
+  }
+
+  .button-primary, .button-secondary {
   display: block;
   width: 80%;
-  margin: 0 auto;
+  margin: 10px auto;
+  }
 }
 
 
