@@ -3,37 +3,41 @@
 {% load static %}
 {% block content %}
 
-<div class="container vh-100">
-    <div class="h1 mb-2">第{{ question_number }}問</div>
-    
-    <div class="h-50 border rounded overflow-auto">{{ question_content }}</div>
-  
-  {% if question_id %}
-    <form action="{% url 'answer_save' question_id=question_id|default:0 %}" method="POST" class="mt-5">
-      {% csrf_token %}
+<div class="wrapper">
+  <div class="question-container"></div>
+      <h2>第{{ question_number }}問</h2>
       
-      {% for choice in question_choices %}
-        <div class="d-flex align-items-center mb-2">
-          <button type="submit" class="btn btn-dark" name="answer" value="{{ choice.key }}">
-            {{ choice.key }}. {{ choice.text }}
-          </button>  
-        </div>
-      {% endfor %}
+      <div class="content-box">{{ question_content }}</div>
     
-    </form>
-  {% else %}
-    <p class="text-danger">問題IDを取得することができませんでした。</p>
-  {% endif %}
-  
-    <div class="d-flex justify-content-center gap-3">
-      <!-- 解答終了 -->
-      <a  href="{% url 'home' %}" class="btn btn-secondary">解答終了</a>
-      <!-- 中断 -->
-      <form action="{% url 'end_session' %}" method="POST">
+    {% if question_id %}
+      <form action="{% url 'answer_save' question_id=question_id|default:0 %}" method="POST" >
         {% csrf_token %}
-        <button type="submit" class="btn btn-danger">中断</button> 
+        
+        {% for choice in question_choices %}
+          <div class="choice-container">
+            <button type="submit" class="button-choice" name="answer" value="{{ forloop.counter0 }}">
+              {{ choice.0 }}
+            </button>
+            {{ choice.1 }}
+          </div>      
+        {% endfor %}
+      
       </form>
-    </div>
+    {% else %}
+      <p class="text-danger">問題IDを取得することができませんでした。</p>
+    {% endif %}
+    
+      <div class="button-group">
+        <!-- 解答終了 -->
+        <a href="{% url 'home' %}" class="button-primary">解答終了</a>
+        <!-- 中断 -->
+        <form action="{% url 'end_session' %}" method="POST">
+          {% csrf_token %}
+          <button type="submit" class="button-secondary">中断</button> 
+        </form>
+      </div>
+  </div>
 </div>
+
 
 {% endblock %}
