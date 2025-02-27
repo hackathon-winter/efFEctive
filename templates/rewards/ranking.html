@@ -3,19 +3,38 @@
 {% load static %}
 {% block content %}
 
-<!-- 未実装：リワード周り -->
+<div class="wrapper">
+    <h1 class="text-center">ランキング</h1>
+    <div class="ranking-container">
+        <table>
+            <tr>
+                <th class="col-rank">順位</th>
+                <th class="col-name">ユーザー名</th>
+                <th class="col-reward">バッジ</th>
+                <th class="col-score">スコア</th>
+            </tr>
 
-<div class="container">
-    <div class="list-group">
-        {% for user in ranking %}  
-        <div class="list-group-item d-flex justify-content-between align-items-center">
-            <div>{{ forloop.counter }}位</div>
-            <div class="">{{ user.0 }}</div>
-            <div class=""></div> <!-- バッジ用スペース -->
-            <div class="">{{ user.1 }}pt</div>
-        </div>
-        {% endfor %}
-    </div> 
+            {% for user in ranking %} 
+            <tr>
+                <td class="col-rank">{{ forloop.counter }}位</td>
+                <td class="col-name">{{ user.0 }}</td>
+                <td class="col-reward">
+                    <div class="badges-container">
+                        <!-- for文でリワードのパスを取得し、srcに指定 -->
+                        <img class="badge-image" src="">
+                        <!-- end for -->
+                    </div>
+                </td>
+                <td class="col-score">{{ user.1 }}pt</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <div class="button-group">
+        <a href="{% url 'home' %}" class="button-primary">ホーム画面へ</a>
+    </div>
+
 </div>
   
 {% endblock %}
