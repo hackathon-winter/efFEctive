@@ -15,7 +15,7 @@ def list_questions(request, difficulty=NORMAL):
     user = request.user
 
     # 最新のセッションを取得（なければ作成）
-    latest_session = Session.objects.filter(user=user).order_by('-created_at').first()
+    latest_session = Session.objects.filter(user=user, end_time__isnull=True).order_by('-created_at').first()
     if not latest_session:
         latest_session = Session.objects.create(
             user=user,
@@ -162,7 +162,7 @@ def end_session(request):
 def result_page(request):
 
     user = request.user
-    latest_session = Session.objects.filter(user=user).order_by('-created_at').first()
+    latest_session = Session.objects.filter(user=user, end_time__isnull=False).order_by('-end_time').first()
 
     if not latest_session:
         return redirect('list_questions')
