@@ -1,3 +1,4 @@
+import uuid
 from django.db import models
 from django.utils.timezone import now
 from authentication.models import User
@@ -26,6 +27,7 @@ class Question(models.Model):
         ('strategy', 'ストラテジ系'),
     ]
 
+    uuid = models.UUIDField(default=uuid.uuid4, unique=True, editable=False, verbose_name='UUID')
     content = models.TextField(verbose_name='問題文')
     choices = models.JSONField(verbose_name='選択肢（JSON形式）')
     correct_answer = models.CharField(max_length=255, verbose_name='正解')

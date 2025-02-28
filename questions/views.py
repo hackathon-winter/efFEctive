@@ -40,6 +40,7 @@ def list_questions(request, difficulty=NORMAL):
         return redirect('result_page')
 
     question = random.choice(list(unanswered_questions))
+    question_id = question.id
 
     # セッションに現在のquestion_idを保存
     request.session['current_question_id'] = str(question_id)
@@ -67,12 +68,16 @@ def answer_save(request, question_id):
         if not latest_session:
             return redirect('list_questions')
 
-        # DBにquestion_idがあるかチェック
+        # DBにquestion_idがあるかチェックし、セッションから取得
         question_id = request.session.get('current_question_id')
         if not question_id:
             return redirect('list_questions')
-
-        question = get_object_or_404(Question, id=question_id)
+        
+        # question_id が整数型であるかチェック
+        try:
+            question = get_object_or_404(Question, id=int(question_id))
+        except ValueError:
+            return redirect('list_questions')
 
         selected_answer = request.POST.get('answer', '')
 
@@ -119,7 +124,11 @@ def answer_save(request, question_id):
 def answer_result(request, question_id):
 
     user = request.user
-    question = get_object_or_404(Question, id=question_id)
+
+    try:
+        question = get_object_or_404(Question, id=question_id)
+    except ValueError:
+        return redirect('list_questions')
 
     latest_answer = Answer.objects.filter(
         session__user=user,

@@ -73,19 +73,19 @@ def ranking_view(request):
     users = User.objects.all().order_by('-points')
 
     ranking = [
-        (user.user_name, getattr(user, 'points', 0), user) for user in users
+        (user.user_name, user.points, user) for user in users
     ]
 
     # 各ユーザーのバッジ情報を取得する
     user_badges = {
         user.user_name:[
             {
-                'category': badge.category.lower(),
-                'level': badge.level.lower() 
+                'category': badge_award.badge.category.lower(),
+                'level': badge_award.badge.level.lower() 
             }
-            for badge in user.badge_awards.all
-            ]
-            for user in users
+            for badge_award in user.badge_awards.all()
+        ]
+        for user in users
     }
 
     correct_answers = Answer.objects.filter(is_correct=True).count()
