@@ -131,8 +131,6 @@ else:
     # DEBUG=False(本番環境)の場合に使用する
     STATIC_DIRS = []
 
-STATICFILES_DIRS = [BASE_DIR / 'static'] # プロジェクト直下にのみ静的ファイル配置のため指定。
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
