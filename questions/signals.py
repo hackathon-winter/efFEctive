@@ -15,16 +15,22 @@ def populate_questions(sender, **kwargs):
     
         with transaction.atomic():  # データ登録のトランザクションを確保
             for q_data in QUESTIONS_DATA:
-                # UUIDが既に存在するかチェック
+                print("デバッグ: q_data =", q_data)
+
+                # UUIDがq_dataに既に存在するかチェック
+                if 'uuid' not in q_data:
+                    q_data['uuid'] = str(uuid.uuid4())
+                    print(f"新規 UUID を生成: {q_data['uuid']}")
+
                 existing_question = Question.objects.filter(uuid=q_data['uuid']).first()
 
                 if existing_question:
                     print(f"問題 (UUID: {q_data['uuid']}) は既に登録済みのためスキップ")
-                    continue  # 既存のデータがあればスキップ
+                    continue
 
                 # 新しい問題を登録
                 Question.objects.create(
-                    uuid=q_data['uuid'],  # ここでUUIDを指定
+                    uuid=q_data['uuid'],
                     content=q_data['content'],
                     choices=q_data['choices'],
                     correct_answer=q_data['correct_answer'],
