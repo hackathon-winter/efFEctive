@@ -61,7 +61,7 @@ docker-compose exec web python manage.py createsuperuser
 ```
 
 6. 開発サーバーの起動
-コンテナが正常に起動していることを確認し、http://localhostにアクセスしてください。
+コンテナが正常に起動していることを確認し、<http://localhost>にアクセスしてください。
 ```sh
 docker-compose ps -a
 ```
