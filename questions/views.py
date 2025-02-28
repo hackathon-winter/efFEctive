@@ -172,7 +172,7 @@ def result_page(request):
     correct_answers = latest_session.correct_answers
     session_end_time = latest_session.end_time
 
-    accuracy = (correct_answers / total_questions) * 100 if total_questions > 0 else 0
+    accuracy = round((correct_answers / total_questions) * 100, 1) if total_questions > 0 else 0
 
     answers = Answer.objects.filter(session=latest_session).order_by('answer_id')
 
