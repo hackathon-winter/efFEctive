@@ -3,19 +3,13 @@
 {% load static %}
 {% block content %}
 
-<div class="d-flex align-items-center justify-content-center vh-100">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-4">
-                <div class="card shadow p-4">
-                    <a class="btn btn-secondary mb-3" data-bs-toggle="modal" data-bs-target="#selectModeModal">問題演習</a>
-                    <a class="btn btn-secondary mb-3" href="{% url 'learning_history' %}">学習履歴</a>
-                    <a class="btn btn-secondary mb-3" href="{% url 'ranking' %}">ランキング</a>
-                    <button class="btn btn-secondary" onclick="logoutUser()">ログアウト</button>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="wrapper">
+  <div class="home-container">
+    <a class="button-primary" data-bs-toggle="modal" data-bs-target="#selectModeModal">問題演習</a>
+    <a class="button-primary" href="{% url 'learning_history' %}">学習履歴</a>
+    <a class="button-primary" href="{% url 'ranking' %}">ランキング</a>
+    <button class="button-primary" onclick="logoutUser()">ログアウト</button>
+  </div>
 </div>
 
 <!-- 出題設定用モーダル -->
@@ -38,11 +32,9 @@
           <label class="form-check-label">科目B</label>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-primary">スタート</button>
-        </div>
+          <button type="submit" class="button-primary">スタート</button>
         </form>
-        <div class="modal-footer">
-        <a class="btn btn-secondary" href="{% url 'continue_questions' %}">続きから始める</b>
+        <a class="button-secondary" href="{% url 'continue_questions' %}">続きから始める</b>
         </div>
       </div>
     </div>

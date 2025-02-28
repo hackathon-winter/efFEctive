@@ -3,35 +3,37 @@
 {% load static %}
 {% block content %}
 
-<div class="container">
+<div class="wrapper">
     <div class="h2 text-center">お疲れ様でした！！</div>
     <div class="h2 text-center">
         今回の成績：正答率{{ accuracy }}％（{{ correct_answer }}／{{ total_questions }}問）
     </div>
     
-    <div class="table-responsive">
-        <table class="table table-bordered text-center">
-            <thead>
-                <tr>
-                    <th>No.</th>
-                    {% for result in results %}
-                        <th><a href="{% url 'answer_result' question_id=result.question.id %}">{{ forloop.counter }}</a></th>
-                    {% endfor %}
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th>正誤</th>
-                    {% for result in results %}
-                        <td>{% if result.is_correct %} ○ {% else %} × {% endif %}</td>
-                    {% endfor %}
-                </tr>
-            </tbody>
-        </table>
+    <div class="results-table-container">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        {% for result in results %}
+                            <th><a href="{% url 'answer_result' question_id=result.question.id %}">{{ forloop.counter}}</a></th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>正誤</th>
+                        {% for result in results %}
+                            <td>{% if result.is_correct %} ○ {% else %} × {% endif %}</td>
+                        {% endfor %}
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
     
-    <div class="text-center">
-        <a href="{% url 'home' %}" class="btn btn-dark">ホーム画面へ</a>
+    <div class="button-group">
+        <a href="{% url 'home' %}" class="button-primary">ホーム画面へ</a>
     </div>
 
 </div>

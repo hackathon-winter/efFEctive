@@ -1,15 +1,283 @@
+@charset "utf-8";
+/* 解答履歴表のレイアウト */
 .table-responsive {
     overflow-x: auto;
+    width: 1200px;
     position: relative;
-    }
    
   table {
-    white-space: nowrap;
+      white-space: nowrap;
+      width: auto;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+  
+  th, td {
+    text-align: center;
+    width: 50px;
+
+  }
+
+  th:nth-child(even) , td:nth-child(even) {
+      background-color: #f2f2f2;
     }
-          
+  th:hover {
+      background-color: #f8d5d5;
+    }
+
   th:first-child, td:first-child {
-    position: sticky;
-    left: 0;
-    background: white;
-    z-index: 2;
+      position: sticky;
+      left: 0;
+      background: #f58989;
+      color: #ffffff;
+      z-index: 2;
+      font-weight: bold;
+      }
+}
+
+/* ボタンのデザイン */
+.button-primary {
+  display: inline-block;
+  width: 120px;
+  background-color: #ff4f4f ;
+  color: #ffffff;
+  border: 0;
+  border-radius: 20px;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.button-secondary {
+  display: inline-block;
+  width: 120px;
+  background-color: #a09e9e ;
+  color: #ffffff;
+  border: 0;
+  border-radius: 20px;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.button-third {
+  display: inline-block;
+  width: 120px;
+  background-color: #4e96f5;
+  color: #ffffff;
+  border: 0;
+  border-radius: 20px;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 表示領域の指定 */
+.wrapper {
+  width: 1200px;
+  margin: 20px auto;
+}
+
+/* フォームのデザイン */
+.form-container{
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  margin: 20px auto;
+  border: 1px solid #1e1c1c6c;
+  border-radius: 20px;
+  padding: 50px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+
+  input {
+    margin-bottom: 20px;
+  }
+
+  a {
+    margin-top: 10px;
+    align-self: center;
+  }
+
+  .button-primary, .button-secondary {
+  display: block;
+  width: 80%;
+  margin: 10px auto;
+  }
+}
+
+
+/* ホーム画面レイアウト */
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 600px;
+  margin: 0 auto;
+  border: 1px solid #1e1c1c6c;
+  border-radius: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+
+  .button-primary {
+    display: block;
+    margin: 20px;
+    height: 30px;
+    width: 400px;
+  }
+}
+
+/* ボタン内のテキストを天地中央寄せにしたい */
+.button-home {
+  display: inline-block;
+  margin: 10px auto;
+  
+  width: 80%;
+  height: 50px;
+  background-color: #ff4f4f ;
+  color: #ffffff;
+  font-weight: bold;
+  border: 0 solid #ff4f4f;
+  border-radius: 20px;
+  text-align: center;
+  text-decoration: none;;
+}
+
+/* 出題画面レイアウト */
+.question-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.content-box {
+  height: 300px;
+  margin: 30px 0;
+  border: 1px solid #979393;
+  border-radius: 4px;
+  overflow: hidden scroll;
+}
+
+.choice-container {
+  margin: 10px 0;
+}
+
+.button-choice{
+  display: inline-block;
+  background-color:#f35858;
+  color: #ffffff;
+  border: 0;
+  border-radius: 4px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  gap: 10px;
+}
+
+/* 解答・解説画面レイアウト */
+.answer-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.explanation-container {
+  margin-top: 30px;
+}
+
+.explanation-box {
+  height: 300px;
+  margin: 0 0  30px 0;
+  border: 1px solid #979393;
+  border-radius: 4px;
+  overflow: hidden scroll;
+}
+
+/* 結果表示画面レイアウト */
+.results-table-container {
+  margin-top: 50px;
+}
+
+/* 学習履歴画面レイアウト */
+.chart-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 250px;
+  margin-top: 30px;
+
+}
+
+.record-table-container {
+  overflow: hidden scroll;
+  margin-top: 10px;
+  height: 350px;
+}
+
+/* ランキング画面レイアウト */
+.ranking-container {
+  height: 600px;
+  overflow: hidden scroll;
+
+  table {
+    width: 100%;
+    border-collapse: separate;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    border-radius: 2px;
+    
+    tr:first-child{
+      position: sticky;
+      top: 0;
+      z-index: 2;
     }
+  
+
+    th {
+      height: 50px;
+      background-color: #f58989;
+      color: #ffffff;
+      text-align: center;
+    }
+
+    td {
+      height: 80px;
+      text-align: center;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    tr:nth-child(odd) {
+      background-color: #fefcfc;
+    }
+
+    tr:hover {
+      background-color: #f8d5d5;
+    }
+
+    .col-rank {
+      width: 120px;
+    }
+
+    .col-username {
+      width: 300px;
+      overflow: scroll hidden;
+    }
+
+    .col-reward {
+      width: 600px;
+    }
+  
+    .col-score {
+      width: 180px;
+    }
+
+    .badge-image {
+      width: 30px;
+    }
+
+  }
+}
