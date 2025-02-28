@@ -5,7 +5,7 @@ from django.utils.timezone import now
 from authentication.models import User
 from questions.models import Answer, Question
 from progress.models import Session
-from .models import Badge
+from .models import Badge, BadgesAwarded
 
 @login_required
 def check_and_award_badges(request, user, category=None):
@@ -53,19 +53,25 @@ def check_and_award_badges(request, user, category=None):
     if level is None:
         return
     
-    # 既にバッジを獲得済みかどうか確認
-    existing_badge = Badge.objects.filter(badge_users__user=user, category=category).first()
+    # Badgeの取得
+    badge, _ = Badge.objects.get_or_create(category=category, level=level)  
 
-    if not existing_badge:
-        Badge.objects.create(category=category, level=level).users.add(user)
+    # 既にバッジを獲得済みかどうか確認（BadgesAwardedに登録されているかどうか）
+    existing_badge_award = BadgesAwarded.objects.filter(user=user, badge__category=category).first()
+
+    if not existing_badge_award:
+        BadgesAwarded.objects.create(user=user, badge=badge)
     else:
-        # 既存のバッジのランクをアップグレードする
+        # 既存のバッジがある場合は、アップグレードする
         badge_levels = [Badge.BRONZE, Badge.SILVER, Badge.GOLD]
+        current_level_index = badge_levels.index(existing_badge_award.badge.level)
+        new_level_index = badge_levels.index(level)
 
-        if Badge.BADGE_LEVELS.index((existing_badge.level, existing_badge.get_level_display())) < Badge.BADGE_LEVELS.index((level, dict(Badge.BADGE_LEVELS[level]))):
-            existing_badge.level = level
-            existing_badge.acquired_at = now()
-            existing_badge.save()
+        if new_level_index > current_level_index:
+            new_badge, _ = Badge.objects.get_or_create(category=category, level=level)
+            existing_badge_award.badge = new_badge
+            existing_badge_award.acquired_at = now()
+            existing_badge_award.save()
 
 @login_required
 def ranking_view(request):
