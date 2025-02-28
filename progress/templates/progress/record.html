@@ -15,8 +15,8 @@
     <!-- 各回の結果を表として描画 -->
     <div class="record-table-container">
         
-        {% for session in session_answers %}
-        <h3>{{ session.time }} 正答率 {{ session.accuracy|floatformat:2 }} % (問／{{ session.answers|length }}問)</h3>
+        {% for session in session_data %}
+        <h3>{{ session.end_time }} 正答率 {{ session.accuracy|floatformat:2 }} % (問／{{ session.answers|length }}問)</h3>
 
         <div class="table-responsive">
             <table class="table">

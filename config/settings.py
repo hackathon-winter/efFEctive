@@ -121,9 +121,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-# STATIC_ROOT = BASE_DIR / 'staticfiles' # DEBUG=False(本番環境)の場合に使用する
+STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+if DEBUG:
+    STATIC_DIRS = [os.path.join(BASE_DIR, 'static')]
+else: 
+    # DEBUG=False(本番環境)の場合に使用する
+    STATIC_DIRS = []
 
 STATICFILES_DIRS = [BASE_DIR / 'assets'] # プロジェクト直下にのみ静的ファイル配置のため指定。フォルダ名 'static' だとエラーのためフォルダ名変更
 
