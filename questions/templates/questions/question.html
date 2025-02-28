@@ -15,11 +15,11 @@
         
         {% for choice in question_choices %}
           <div class="choice-container">
-            <button type="submit" class="button-choice" name="answer" value="{{ forloop.counter0 }}">
-              {{ choice.0 }}
+            <button type="submit" class="button-choice" name="answer" value="{{ choice.key }}">
+              {{ choice.key }}
             </button>
-            {{ choice.1 }}
-          </div>      
+            {{ choice.text }}
+          </div>
         {% endfor %}
       
       </form>
