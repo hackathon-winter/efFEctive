@@ -48,8 +48,8 @@
 .button-secondary {
   display: inline-block;
   width: 120px;
-  background-color: #c1bebe ;
-  color: #080707;
+  background-color: #a09e9e ;
+  color: #ffffff;
   border: 0;
   border-radius: 20px;
   text-align: center;
@@ -60,7 +60,7 @@
   display: inline-block;
   width: 120px;
   background-color: #4e96f5;
-  color: #080707;
+  color: #ffffff;
   border: 0;
   border-radius: 20px;
   text-align: center;
@@ -159,6 +159,7 @@
 .button-choice{
   display: inline-block;
   background-color:#f35858;
+  color: #ffffff;
   border: 0;
   border-radius: 4px;
 }
