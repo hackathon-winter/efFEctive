@@ -4,3 +4,6 @@ __pycache__/
 *$py.class
 *.so
 EOF
+
+# collectstatic で生成されるファイルを無視
+/staticfiles/
