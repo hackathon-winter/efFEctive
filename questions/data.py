@@ -1,7 +1,10 @@
+import uuid
+
 QUESTIONS_DATA = [
     # normalモード（60問）
     {
         'id':1,
+        'uuid': str(uuid.uuid4()), 
         'content': 'コンピューターの基本的な動作原理に関する記述で正しいものはどれか。',
         'choices': [
             {'key': 'ア', 'text': 'CPUがプログラムを実行する際、プログラムの命令をメモリから取り出し、解釈して実行する。'},
@@ -16,7 +19,8 @@ QUESTIONS_DATA = [
         'category': 'fundamental_theory'
     },
     {
-        'id':2,        
+        'id':2,
+        'uuid': str(uuid.uuid4()),       
         'content': 'コンピュータの基本的な五大装置に含まれないものはどれか。',
         'choices': [
             {'key': 'ア', 'text': '制御装置'},
@@ -31,6 +35,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':3,
+        'uuid': str(uuid.uuid4()), 
         'content': 'ソフトウェアのライフサイクルにおいて、要件定義の次に行われる工程はどれか。',
         'choices': [
             {'key': 'ア', 'text': 'プログラミング'},
@@ -45,6 +50,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':4,
+        'uuid': str(uuid.uuid4()), 
         'content': '関係データベースで「主キー」に求められる条件として適切なものはどれか。',
         'choices': [
             {'key': 'ア', 'text': '可読性'},
@@ -59,6 +65,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':5,
+        'uuid': str(uuid.uuid4()), 
         'content': 'オペレーティングシステム（OS）の主な役割として適切なものはどれか。',
         'choices': [
             {'key': 'ア', 'text': 'ハードウェアとソフトウェアの仲介をする。'},
@@ -73,6 +80,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':6,
+        'uuid': str(uuid.uuid4()), 
         'content': 'コンピュータネットワークにおいて、異なるプロトコル間で通信を行うための装置はどれか。',
         'choices': [
             {'key': 'ア', 'text': 'ハブ'},
@@ -88,6 +96,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':7,
+        'uuid': str(uuid.uuid4()), 
         'content': 'アルゴリズムの「探索法」の中で、データが整列されているときに最も効率的な探索方法はどれか。',
         'choices': [
             {'key': 'ア', 'text': '線形探索'},
@@ -102,6 +111,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':8,
+        'uuid': str(uuid.uuid4()), 
         'content': '共通鍵暗号方式のAESに関する説明として適切なものはどれか。',
         'choices': [
             {'key': 'ア', 'text': '暗号化には秘密鍵、復号には公開鍵を使用する。'},
@@ -116,6 +126,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':9,
+        'uuid': str(uuid.uuid4()), 
         'content': 'プロジェクトマネジメントにおいて、クリティカルパスとは何か。',
         'choices': [
             {'key': 'ア', 'text': '最も短期間で完了する作業の順序'},
@@ -130,6 +141,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':10,
+        'uuid': str(uuid.uuid4()), 
         'content': 'GUI（グラフィカルユーザーインターフェース）の特徴として適切なものはどれか。',
         'choices': [
             {'key': 'ア', 'text': 'コマンドラインを用いて操作する。'},
@@ -144,6 +156,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':11,
+        'uuid': str(uuid.uuid4()), 
         'content': '2進数の（1101）₂を10進数に変換した値として正しいものはどれか。',
         'choices': [
             {'key': 'ア', 'text': '13'},
@@ -159,6 +172,7 @@ QUESTIONS_DATA = [
     }, 
     {
         'id':12,
+        'uuid': str(uuid.uuid4()), 
         'content': '10進数の255を16進数に変換した値として正しいものはどれか。',
         'choices': [
             {'key': 'ア', 'text': 'FO'},
@@ -174,6 +188,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':13,
+        'uuid': str(uuid.uuid4()), 
         'content': 'フィボナッチ数列の第6項（0から数える）として正しいものはどれか。',
         'choices': [
             {'key': 'ア', 'text': '5'},
@@ -190,6 +205,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':14,
+        'uuid': str(uuid.uuid4()), 
         'content': 'バブルソートで、要素数5のデータ[5, 2, 4, 1, 3]を昇順に並べ替えた場合、最初の1回の交換後の並びとして正しいものはどれか。',
         'choices': [
             {'key': 'ア', 'text': '[2, 5, 4, 1, 3]'},
@@ -210,6 +226,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':15,
+        'uuid': str(uuid.uuid4()), 
         'content': 'Webアプリケーションにおいて、SQLインジェクション攻撃を防ぐための適切な対策はどれか。',
         'choices': [
             {'key': 'ア', 'text': 'ユーザー入力をそのままSQL文に組み込む。'},
@@ -226,6 +243,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':16,
+        'uuid': str(uuid.uuid4()), 
         'content': '情報理論において、「エントロピー」が表す概念として適切なものはどれか。',
         'choices': [
             {'key': 'ア', 'text': 'データ圧縮の際の圧縮比'},
@@ -244,6 +262,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':17,
+        'uuid': str(uuid.uuid4()), 
         'content': '「チューリング完全（Turing completeness）」なシステムとして、適切なものはどれか。',
         'choices': [
             {'key': 'ア', 'text': 'すべての命令型プログラミング言語'},
@@ -260,6 +279,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':18,
+        'uuid': str(uuid.uuid4()), 
         'content': '計算理論において、「決定性有限オートマトン（DFA）」と「非決定性有限オートマトン（NFA）」の関係として 正しいもの はどれか。',
         'choices': [
             {'key': 'ア', 'text': 'NFAはDFAに変換できるが、DFAをNFAに変換することは不可能である'},
@@ -280,6 +300,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':19,
+        'uuid': str(uuid.uuid4()), 
         'content': '以下のソートアルゴリズムのうち、最悪計算量がO(n²) であるものはどれか。',
         'choices': [
             {'key': 'ア', 'text': 'ヒープソート（Heap Sort）'},
@@ -301,6 +322,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':20,
+        'uuid': str(uuid.uuid4()), 
         'content': '再帰（recursion）を使用して解くのに適した問題の特徴として、最も適切なものはどれか。',
         'choices': [
             {'key': 'ア', 'text': '問題を部分問題に分解でき、部分問題の解を組み合わせて解を得ることができる。'},
@@ -318,6 +340,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':21,
+        'uuid': str(uuid.uuid4()), 
         'content': '次のうち、バックトラッキング（Backtracking）を用いるアルゴリズムの典型的な問題 はどれか。',
         'choices': [
             {'key': 'ア', 'text': 'ループ不変量（Loop Invariant）を用いたアルゴリズム'},
@@ -334,6 +357,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':22,
+        'uuid': str(uuid.uuid4()), 
         'content': 'CPUのクロック周波数が高いほど向上する可能性がある性能はどれか。',
         'choices': [
             {'key': 'ア', 'text': 'グラフィック処理の精度'},
@@ -351,6 +375,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':23,
+        'uuid': str(uuid.uuid4()), 
         'content': 'メモリ管理 の手法のうち、仮想メモリ（Virtual Memory） を利用する目的として最も適切なものはどれか。',
         'choices': [
             {'key': 'ア', 'text': 'CPUの負荷を低減し、クロック周波数を下げる'},
@@ -370,6 +395,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':24,
+        'uuid': str(uuid.uuid4()), 
         'content': 'キャッシュメモリの主な役割として適切なものはどれか。',
         'choices': [
             {'key': 'ア', 'text': 'CPUとメインメモリの間に位置し、高速なデータアクセスを実現する'},
@@ -387,6 +413,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':25,
+        'uuid': str(uuid.uuid4()), 
         'content': 'マルチタスクを実現するOSにおいて、プリエンプティブ（強制的）なスケジューリング によって実行中のプロセスが強制的に切り替えられるのは、どのような場合か。',
         'choices': [
             {'key': 'ア', 'text': '実行中のプロセスが終了するまで他のプロセスは待機する場合'},
@@ -406,6 +433,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':26,
+        'uuid': str(uuid.uuid4()), 
         'content': 'OSがハードウェアとやりとりをする際に用いる デバイスドライバ（device driver） の役割として正しいものはどれか。',
         'choices': [
             {'key': 'ア', 'text': 'GUIの描画性能を向上させるために、グラフィックボードの最適化を行う'},
@@ -422,6 +450,7 @@ QUESTIONS_DATA = [
     }, 
     {
         'id':27,
+        'uuid': str(uuid.uuid4()), 
         'content': '現代のOSが採用する ユーザモード（User Mode） と カーネルモード（Kernel Mode） の分離の主な目的として最も適切なものはどれか。',
         'choices': [
             {'key': 'ア', 'text': 'GUI操作とコマンドライン操作を切り替えるため'},
@@ -441,6 +470,7 @@ QUESTIONS_DATA = [
     }, 
     {
         'id':28,
+        'uuid': str(uuid.uuid4()), 
         'content': 'アプリケーションがファイル操作やプロセス生成などの 特権操作 を行うとき、OSのカーネルに対して行われる仕組みは何か。',
         'choices': [
             {'key': 'ア', 'text': 'システムコール（System Call）'},
@@ -460,6 +490,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':29,
+        'uuid': str(uuid.uuid4()), 
         'content': 'ソフトウェアのライフサイクルにおいて、「運用・保守」フェーズの主な目的として適切なものはどれか。',
         'choices': [
             {'key': 'ア', 'text': 'ユーザーにソフトウェアの導入方法を説明する'},
@@ -478,6 +509,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':30,
+        'uuid': str(uuid.uuid4()), 
         'content': 'ソフトウェアのリファクタリング（Refactoring） に関する説明として、最も適切なものはどれか。',
         'choices': [
             {'key': 'ア', 'text': 'プログラムのバグを修正すること'},
@@ -494,6 +526,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':31,
+        'uuid': str(uuid.uuid4()), 
         'content': 'オープンソースソフトウェア（OSS） の特徴として適切でないものはどれか。',
         'choices': [
             {'key': 'ア', 'text': 'プログラムの改変や再配布が許可されているライセンスがある'},
@@ -511,6 +544,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':32,
+        'uuid': str(uuid.uuid4()), 
         'content': 'インタプリタ型のプログラミング言語 の特徴として正しくないものはどれか。',
         'choices': [
             {'key': 'ア', 'text': '代表的な言語には Python, JavaScript, Ruby などがある'},
@@ -527,6 +561,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':33,
+        'uuid': str(uuid.uuid4()), 
         'content': 'バージョン管理システム（VCS: Version Control System） の主な目的として適切なものはどれか。',
         'choices': [
             {'key': 'ア', 'text': 'AIを活用してコードを自動生成し、開発を効率化する'},
@@ -542,6 +577,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':34,
+        'uuid': str(uuid.uuid4()), 
         'content': 'コンピュータの電源ユニット（PSU: Power Supply Unit） の役割として、最も適切なものはどれか。',
         'choices': [
             {'key': 'ア', 'text': 'メインメモリのデータを保存し、電源が切れても保持する'},
@@ -558,6 +594,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':35,
+        'uuid': str(uuid.uuid4()), 
         'content': 'フラッシュメモリ に関する説明として、最も適切でない ものはどれか。',
         'choices': [
             {'key': 'ア', 'text': 'フラッシュメモリは揮発性メモリであり、電源を切るとデータが消失する'},
@@ -574,6 +611,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':36,
+        'uuid': str(uuid.uuid4()), 
         'content': 'HDD（ハードディスクドライブ）とSSD（ソリッドステートドライブ）の違い に関する説明として、最も適切なものはどれか。',
         'choices': [
             {'key': 'ア', 'text': 'HDDの方が一般的に衝撃に強く、SSDは衝撃に弱い'},
@@ -590,6 +628,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':37,
+        'uuid': str(uuid.uuid4()), 
         'content': 'コンピュータの「バス（bus）」の役割として、最も適切なものはどれか。',
         'choices': [
             {'key': 'ア', 'text': 'ハードディスクやSSDのデータを一時的に格納する'},
@@ -609,6 +648,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':38,
+        'uuid': str(uuid.uuid4()), 
         'content': 'コンピュータの「バス（bus）」の役割として、最も適切なものはどれか。',
         'choices': [
             {'key': 'ア', 'text': 'ハードディスクやSSDのデータを一時的に格納する'},
@@ -628,6 +668,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':39,
+        'uuid': str(uuid.uuid4()), 
         'content': 'ユーザーインターフェースの「スケルトンスクリーン（Skeleton Screen）」の目的として適切なものはどれか。',
         'choices': [
             {'key': 'ア', 'text': 'ローディング画面を真っ白にして、余計な情報を表示しないようにする'},
@@ -643,6 +684,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':40,
+        'uuid': str(uuid.uuid4()), 
         'content': 'ユーザーインターフェース（UI）デザインにおいて、フォーム入力のユーザビリティを向上させるための適切な方法 として最も適切なものを選びなさい。',
         'choices': [
             {'key': 'ア', 'text': 'ユーザーの入力ミスを防ぐため、エラーメッセージはフォーム送信後に一括して表示する。'},
@@ -658,6 +700,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':41,
+        'uuid': str(uuid.uuid4()), 
         'content': 'ユーザーインターフェースの設計において、「ヒューリスティック評価」の目的として最も適切なものはどれか。',
         'choices': [
             {'key': 'ア', 'text': '実際のエンドユーザーを対象にアンケート調査を行い、UIの改善点を洗い出すこと'},
@@ -675,6 +718,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':42,
+        'uuid': str(uuid.uuid4()), 
         'content': 'アクセシビリティの観点から、視覚障害者がWebサイトを利用する際に役立つ「スクリーンリーダー（Screen Reader）」 の正しい説明はどれか？',
         'choices': [
             {'key': 'ア', 'text': 'Webページのカラーテーマを変更し、色覚異常のあるユーザーでも認識しやすくする機能'},
@@ -692,6 +736,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':43,
+        'uuid': str(uuid.uuid4()), 
         'content': 'SQLでデータの重複を除外して取得する場合に使用するキーワードとして適切なものはどれか？',
         'choices': [
             {'key': 'ア', 'text': 'DISTINCT'},
@@ -708,6 +753,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':44,
+        'uuid': str(uuid.uuid4()), 
         'content': 'SQLのJOIN操作において、「INNER JOIN」 の結果として正しいものはどれか？',
         'choices': [
             {'key': 'ア', 'text': '片方のテーブルの全データと、もう片方のテーブルの一致するデータを取得する'},
@@ -723,6 +769,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':45,
+        'uuid': str(uuid.uuid4()), 
         'content': 'データベースのトランザクションに関する説明として、適切なもの はどれか？',
         'choices': [
             {'key': 'ア', 'text': 'トランザクションは、データの一貫性を保つために、1つのSQL文ごとに自動的にコミットされる'},
@@ -742,6 +789,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':46,
+        'uuid': str(uuid.uuid4()), 
         'content': 'データベースのインデックスに関する説明として、適切なもの はどれか？',
         'choices': [
             {'key': 'ア', 'text': 'インデックスを使用すると、データの挿入や更新の処理速度も向上する。'},
@@ -763,6 +811,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':47,
+        'uuid': str(uuid.uuid4()), 
         'content': '「ゼロデイ攻撃」に関する説明として適切なものはどれか。',
         'choices': [
             {'key': 'ア', 'text': 'OSやソフトウェアの未知の脆弱性を突いた攻撃で、開発者が対策を取る前に行われる。'},
@@ -781,6 +830,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':48,
+        'uuid': str(uuid.uuid4()), 
         'content': 'マルウェアの一種である「ランサムウェア」に関する説明として適切なものはどれか。',
         'choices': [
             {'key': 'ア', 'text': 'インターネット経由で個人情報を抜き取るスパイウェアの一種である。'},
@@ -798,6 +848,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':49,
+        'uuid': str(uuid.uuid4()), 
         'content': '「ブルートフォース攻撃」に関する説明として、最も適切なものはどれか。',
         'choices': [
             {'key': 'ア', 'text': 'ネットワークを介して大量のリクエストを送りつけ、サービスを停止させる攻撃である。'},
@@ -817,6 +868,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':50,
+        'uuid': str(uuid.uuid4()), 
         'content': '「CSMA/CD（Carrier Sense Multiple Access with Collision Detection）」に関する説明として、最も適切なものはどれか。',
         'choices': [
             {'key': 'ア', 'text': '有線LAN環境でデータ送信前に通信経路の状態を確認し、衝突を検知すると再送する方式である。'},
@@ -837,6 +889,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':51,
+        'uuid': str(uuid.uuid4()), 
         'content': '「CSMA/CD（Carrier Sense Multiple Access with Collision Detection）」に関する説明として、最も適切なものはどれか。',
         'choices': [
             {'key': 'ア', 'text': '有線LAN環境でデータ送信前に通信経路の状態を確認し、衝突を検知すると再送する方式である。'},
@@ -857,6 +910,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':52,
+        'uuid': str(uuid.uuid4()), 
         'content': 'IPv6 におけるアドレスの特徴として適切なものはどれか。',
         'choices': [
             {'key': 'ア', 'text': 'IPv6 では、アドレスの種類としてユニキャスト、マルチキャスト、エニーキャストがある。'},
@@ -880,6 +934,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':53,
+        'uuid': str(uuid.uuid4()), 
         'content': '仮想化技術におけるハイパーバイザー（Hypervisor）型の分類に関する説明として、適切なものはどれか。',
         'choices': [
             {'key': 'ア', 'text': 'タイプ1（ネイティブ型）はホストOS上で動作し、仮想マシンを制御する。'},
@@ -903,6 +958,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':54,
+        'uuid': str(uuid.uuid4()), 
         'content': 'データベース管理システム（DBMS）におけるMVCC（Multi-Version Concurrency Control）の特徴として適切なものはどれか。',
         'choices': [
             {'key': 'ア', 'text': 'MVCCを利用すると、同時実行制御が不要になり、すべてのトランザクションが同じデータを操作できる。'},
@@ -925,6 +981,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':55,
+        'uuid': str(uuid.uuid4()), 
         'content': 'ストレージ技術に関する説明として、適切なものはどれか。',
         'choices': [
             {'key': 'ア', 'text': 'RAID 5は、データの完全なバックアップを行い、すべてのデータを二重に保存する。'},
@@ -946,6 +1003,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':56,
+        'uuid': str(uuid.uuid4()), 
         'content': 'ネットワークセキュリティにおける「ディープパケットインスペクション（DPI）」の特徴として適切なものはどれか。',
         'choices': [
             {'key': 'ア', 'text': 'DPIは、IPアドレスとポート番号の情報のみを解析し、通信のフィルタリングを行う技術である。'},
@@ -984,6 +1042,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':58,
+        'uuid': str(uuid.uuid4()), 
         'content': 'リレーショナルデータベースの正規化に関する説明として適切なものを選択してください。',
         'choices': [
             {'key': 'ア', 'text': '正規化を進めると、データの冗長性が増加するためパフォーマンスが向上する。'},
@@ -1001,6 +1060,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':59,
+        'uuid': str(uuid.uuid4()), 
         'content': 'データベースのビュー（VIEW）に関する説明として適切なものを選択してください。',
         'choices': [
             {'key': 'ア', 'text': 'ビューを使用すると、SQLのパフォーマンスが必ず向上する。'},
@@ -1017,6 +1077,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':60,
+        'uuid': str(uuid.uuid4()), 
         'content': 'データベースではデータの整合性を保つために制約（Constraints）を使用する。次のうち、外部キー制約（FOREIGN KEY）に関する説明として適切なものを選択してください。',
         'choices': [
             {'key': 'ア', 'text': '外部キー制約は、同じテーブル内のカラム同士に設定することはできない。'},
@@ -1035,6 +1096,7 @@ QUESTIONS_DATA = [
         # hardモード（15問）
     {
         'id':61,
+        'uuid': str(uuid.uuid4()), 
         'content': '動的計画法（DP: Dynamic Programming）を用いるべき問題の特徴として適切なものはどれか。',
         'choices': [
             {'key': 'ア', 'text': '部分問題が独立している問題'},
@@ -1050,6 +1112,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':62,
+        'uuid': str(uuid.uuid4()), 
         'content':'キャッシュメモリの階層構造に関する記述のうち、適切なものはどれか。',
         'choices': [
             {'key': 'ア', 'text': 'L3キャッシュはCPU内部にあり、L1キャッシュよりも高速である。'},
@@ -1065,6 +1128,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':63,
+        'uuid': str(uuid.uuid4()), 
         'content': 'CPUのパイプライン処理に関する説明のうち、正しいものはどれか。',
         'choices': [
             {'key': 'ア', 'text': 'パイプライン化により、処理時間はすべての命令で均一になる。'},
@@ -1080,6 +1144,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':64,
+        'uuid': str(uuid.uuid4()), 
         'content': '仮想メモリにおけるページング方式について正しい説明はどれか。',
         'choices': [
             {'key': 'ア', 'text': 'ページテーブルは、仮想アドレスと物理アドレスの対応関係を保持している。'},
@@ -1097,6 +1162,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':65,
+        'uuid': str(uuid.uuid4()), 
         'content': 'キャッシュメモリと主記憶（RAM）のアクセス速度に関する説明として、適切なものはどれか。',
         'choices': [
             {'key': 'ア', 'text': 'キャッシュメモリのアクセス速度は主記憶よりも遅いが、大容量のデータを格納できる。'},
@@ -1112,6 +1178,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':66,
+        'uuid': str(uuid.uuid4()), 
         'content': 'RISC（Reduced Instruction Set Computer）とCISC（Complex Instruction Set Computer）の違いとして、適切なものはどれか。',
         'choices': [
            {'key': 'ア', 'text': 'RISCは複雑な命令を実装しているため、CISCよりも低クロックで動作する。'},
@@ -1127,6 +1194,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':67,
+        'uuid': str(uuid.uuid4()), 
         'content': 'ウェブアクセシビリティの向上を目的として、適切なWAI-ARIAの活用方法はどれか。',
         'choices': [
            {'key': 'ア', 'text': 'WAI-ARIAのrole属性を全てのHTMLタグに追加することで、アクセシビリティを向上させる。'},
@@ -1142,6 +1210,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':68,
+        'uuid': str(uuid.uuid4()), 
         'content': 'リレーショナルデータベースにおいて、データの一貫性と性能を両立するための適切な設計手法はどれか。',
         'choices': [
            {'key': 'ア', 'text': '全てのテーブルを第三正規形（3NF）まで正規化し、データの冗長性を完全に排除する。'},
@@ -1157,6 +1226,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':69,
+        'uuid': str(uuid.uuid4()), 
         'content': 'TLS 1.3 における暗号スイートの選択に関する説明として適切なものはどれか。',
         'choices': [
            {'key': 'ア', 'text': 'TLS 1.3では、従来のRSA鍵交換方式が引き続き推奨されている。'},
@@ -1171,6 +1241,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':70,
+        'uuid': str(uuid.uuid4()), 
         'content': 'BGP（Border Gateway Protocol）のルート選択に関する説明として適切なものはどれか。',
         'choices': [
            {'key': 'ア', 'text': 'BGPは最短経路（ホップ数）のみを基準にルートを選択する。'},
@@ -1185,6 +1256,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':71,
+        'uuid': str(uuid.uuid4()), 
         'content': 'アジャイル開発において、バーンアップチャートが持つ特徴として適切なものはどれか。',
         'choices': [
            {'key': 'ア', 'text': 'プロジェクトの進捗を、完了した作業量の累積として視覚化する。'},
@@ -1200,6 +1272,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':72,
+        'uuid': str(uuid.uuid4()), 
         'content': 'プロジェクトマネジメントにおける「リスク対応戦略」のうち、リスクの発生確率を低減させる方法として適切なものはどれか。',
         'choices': [
            {'key': 'ア', 'text': 'リスクの回避（Avoidance）'},
@@ -1215,6 +1288,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':73,
+        'uuid': str(uuid.uuid4()), 
         'content': 'IT戦略の策定において、バリューチェーン分析を活用する主な目的として適切なものはどれか。',
         'choices': [
            {'key': 'ア', 'text': '業務プロセスを分解し、競争優位性を生み出す要因を分析する。'},
@@ -1230,6 +1304,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':74,
+        'uuid': str(uuid.uuid4()), 
         'content': '関係データベースにおいて、第3正規形（3NF）を満たすために必要な条件として適切なものはどれか。',
         'choices': [
            {'key': 'ア', 'text': '全ての非キー属性が主キーに対して関数従属していること。'},
@@ -1245,6 +1320,7 @@ QUESTIONS_DATA = [
     },
     {
         'id':75,
+        'uuid': str(uuid.uuid4()), 
         'content': 'ネットワークにおいて、IPsecのESP（Encapsulating Security Payload）の特徴として最も適切なものはどれか。',
         'choices': [
            {'key': 'ア', 'text': 'データの完全性を保証するが、暗号化は行わない。'},
