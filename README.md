@@ -33,29 +33,41 @@
 
 ## セットアップ方法
 1. リポジトリをクローンします。
+```sh
 git clone git@github.com:hackathon-winter/efFEctive.git
 cd efFEctive
+```
 
 2. 環境変数の設定
 .envファイルを作成し、設定が必要です。
 
 3. Dockerコンテナの起動
 以下のコマンドで、アプリケーションをコンテナ化して起動します。
+```sh
 docker-compose up -d
+```
 
 4. データベースのマイグレーション
 コンテナ内で、データベースをセットアップします。
+```sh
 docker-compose exec web python manage.py makemigrations
 docker-compose exec web python manage.py migrate
+```
 
 5. スーパーユーザーの作成
 管理画面にアクセスするためにスーパーユーザーを作成します。
+```sh
 docker-compose exec web python manage.py createsuperuser
+```
 
 6. 開発サーバーの起動
 コンテナが正常に起動していることを確認し、http://localhostにアクセスしてください。
+```sh
 docker-compose ps -a
+```
 
 6.  Dockerコンテナの停止＆クリーンアップ
+```sh
 docker-compose down
+```
 
