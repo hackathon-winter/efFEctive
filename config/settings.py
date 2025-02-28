@@ -123,12 +123,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 if DEBUG:
-    STATIC_ROOT = [os.path.join(BASE_DIR, 'static')]
-    STATIC_ROOT = None
+    STATIC_DIRS = [os.path.join(BASE_DIR, 'static')]
 else: 
     # DEBUG=False(本番環境)の場合に使用する
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    STATIC_DIRS = []
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
