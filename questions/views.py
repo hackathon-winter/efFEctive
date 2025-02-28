@@ -29,26 +29,26 @@ def list_questions(request, difficulty=NORMAL):
             start_time=now()
         )
 
-    # 現在の難易度に対応する問題一覧を取得
-    filtered_questions = [q for q in QUESTIONS_DATA if q['difficulty'] == latest_session.difficulty]
-
-    # 解答済みでない問題のみを取得
-    unanswered_questions = [
-        q for q in filtered_questions
-        if q['id'] not in latest_session.session_answers
-    ]
+    # 未回答の問題をDBから取得
+    answer_ids = latest_session.session_answers
+    unanswered_questions = Question.objects.filter(
+        difficulty=latest_session.difficulty
+    ).exclude(id__in=answer_ids)
 
     # 未解答の問題がなければ結果画面へ遷移
     if not unanswered_questions:
         return redirect('result_page')
 
-    question_data = random.choice(unanswered_questions)
+    question = random.choice(list(unanswered_questions))
+
+    # セッションに現在のquestion_idを保存
+    request.session['current_question_id'] = str(question_id)
 
     return render(request, 'questions/question.html', {
         'question_number': latest_session.total_questions + 1,
-        'question_id': question_data['id'],
-        'question_content': question_data['content'],
-        'question_choices': question_data['choices'],
+        'question_id': question.id,
+        'question_content': question.content,
+        'question_choices': question.choices,
         'difficulty': latest_session.difficulty,
     })
 
@@ -67,13 +67,17 @@ def answer_save(request, question_id):
         if not latest_session:
             return redirect('list_questions')
 
+        # DBにquestion_idがあるかチェック
+        question_id = request.session.get('current_question_id')
+        if not question_id:
+            return redirect('list_questions')
+
         question = get_object_or_404(Question, id=question_id)
-        correct_answer = question.correct_answer
 
         selected_answer = request.POST.get('answer', '')
 
         # 正誤判定
-        is_correct = (selected_answer == correct_answer)
+        is_correct = (selected_answer == question.correct_answer)
 
         # セッションの正答数や連続正解数を更新
         latest_session.total_questions += 1
@@ -89,8 +93,9 @@ def answer_save(request, question_id):
         elif latest_session.consecutive_correct == 0:
             latest_session.difficulty = NORMAL
 
-        if question_id not in latest_session.session_answers:
-            latest_session.session_answers.append(question_id)
+        # 解答済みの問題リストに追加
+        if str(question_id) not in latest_session.session_answers:
+            latest_session.session_answers.append(str(question_id))
 
         latest_session.save()
 
@@ -158,10 +163,7 @@ def result_page(request):
     correct_answers = latest_session.correct_answers
     session_end_time = latest_session.end_time
 
-    if total_questions > 0:
-        accuracy = (correct_answers / total_questions) * 100
-    else:
-        accuracy = 0
+    accuracy = (correct_answers / total_questions) * 100 if total_questions > 0 else 0
 
     answers = Answer.objects.filter(session=latest_session).order_by('answer_id')
 

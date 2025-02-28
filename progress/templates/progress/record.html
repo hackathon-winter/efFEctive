@@ -17,7 +17,7 @@
     </div>
 
     <!-- 各回の結果を表として描画 -->
-    {% for answers in session_answers %}
+    {% for session in session_data %}
     <div class="mt-4">
         <h3>{{ session.end_time }} 正答率 {{ session.accuracy|floatformat:2 }} % ({{ session.answers|length }}問中)</h3>
 
