@@ -3,14 +3,14 @@ from .models import User
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
-    list_display = ('id', 'email', 'user_name', 'is_staff', 'is_active', 'point','created_at', 'updated_at')
+    list_display = ('id', 'email', 'user_name', 'is_staff', 'is_active', 'points','created_at', 'updated_at')
     list_filter = ('is_staff', 'is_active', 'created_at')
     search_fields = ('email', 'user_name')
     ordering = ('-created_at',)
 
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        ('Personal Info', {'fields': ('user_name','point')}),
+        ('Personal Info', {'fields': ('user_name','points')}),
         ('Permissions', {'fields': ('is_staff', 'is_active', 'is_superuser', 'groups', 'user_permissions')}),
         ('Important dates', {'fields': ('last_login', 'created_at', 'updated_at')}),
     )
