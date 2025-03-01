@@ -16,7 +16,7 @@
     <div class="record-table-container">
         
         {% for session in session_data %}
-        {{ session.end_time }} 正答率：{{ session.accuracy|floatformat:2 }}（問／{{ session.answers|length }}問）
+        {{ session.end_time }} 正答率：{{ session.accuracy|floatformat:2 }}%（問／{{ session.answers|length }}問）
 
         <div class="table-responsive">
             <table class="table">
