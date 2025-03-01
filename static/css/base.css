@@ -1,4 +1,12 @@
 @charset "utf-8";
+html {
+  min-width: 100vh;
+  min-height: 100vh;
+}
+
+body {
+  background: url("/static/images/background-image.png") no-repeat center/ cover;
+}
 /* 解答履歴表のレイアウト */
 .table-responsive {
     overflow-x: auto;
@@ -40,7 +48,7 @@
   width: 120px;
   background-color: #ff4f4f ;
   color: #ffffff;
-  border: 0;
+  border: 2px solid #f70606;
   border-radius: 20px;
   text-align: center;
   text-decoration: none;
@@ -53,7 +61,7 @@
   width: 120px;
   background-color: #a09e9e ;
   color: #ffffff;
-  border: 0;
+  border: 2px solid hsl(0, 0%, 52%);
   border-radius: 20px;
   text-align: center;
   text-decoration: none;
@@ -65,7 +73,7 @@
   width: 120px;
   background-color: #4e96f5;
   color: #ffffff;
-  border: 0;
+  border: 2px solid #2b83f6;
   border-radius: 20px;
   text-align: center;
   text-decoration: none;
@@ -155,6 +163,7 @@
   border: 1px solid #979393;
   border-radius: 4px;
   overflow: hidden scroll;
+  z-index: 10;
 }
 
 .choice-container {
