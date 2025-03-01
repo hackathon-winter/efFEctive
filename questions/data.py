@@ -122,7 +122,7 @@ QUESTIONS_DATA = [
         'correct_answer': 'ウ',
         'explanation': 'AES（Advanced Encryption Standard）は共通鍵暗号方式であり、暗号鍵と復号鍵が同じである。',
         'difficulty': 'normal',
-        'category': 'algorithm'
+        'category': 'security'
     },
     {
         'id':9,
@@ -137,7 +137,7 @@ QUESTIONS_DATA = [
         'correct_answer': 'エ',
         'explanation': 'クリティカルパスは、プロジェクト全体の最短完了時間を決める作業の順序のことである。',
         'difficulty': 'normal',
-        'category': 'algorithm'
+        'category': 'management'
     },
     {
         'id':10,
@@ -152,7 +152,7 @@ QUESTIONS_DATA = [
         'correct_answer': 'ウ', 
         'explanation': 'GUIはマウスやタッチパネルを用いて直感的に操作できるインターフェースのことである。',
         'difficulty': 'normal',
-        'category': 'algorithm'
+        'category': 'user_interface'
     },
     {
         'id':11,
@@ -239,7 +239,7 @@ QUESTIONS_DATA = [
                        'データベースに悪意のあるSQL文を実行させる攻撃手法である。'
                        'プレースホルダ（バインド変数）を使用することで、SQL文とデータを分離し、攻撃を防ぐことができる。',
         'difficulty': 'normal',
-        'category': 'algorithm'
+        'category': 'security'
     },
     {
         'id':16,
@@ -371,7 +371,7 @@ QUESTIONS_DATA = [
                        'ただし、現代のCPUでは、単純にクロック周波数を上げるだけでは性能向上につながらない場合もある。'                                                           
                        '例えば、マルチコアCPU や パイプライン処理 など、アーキテクチャの違いも大きな影響を与える。',
         'difficulty': 'normal',
-        'category': 'algorithm'
+        'category': 'computer_system'
     },
     {
         'id':23,
@@ -391,7 +391,7 @@ QUESTIONS_DATA = [
                        'データをHDD/SSDへ移動させる。'
                        'ただし、ストレージの速度はRAMよりも遅いため、仮想メモリの過度な使用はパフォーマンス低下につながる。',
         'difficulty': 'normal',
-        'category': 'algorithm'
+        'category': 'computer_system'
     },
     {
         'id':24,
@@ -409,7 +409,7 @@ QUESTIONS_DATA = [
                        'キャッシュメモリには L1（一次キャッシュ）, L2（二次キャッシュ）, L3（三次キャッシュ） の3階層があり、'
                        'L1が最も高速で容量が小さく、L3が最も遅いが大容量になる。',
         'difficulty': 'normal',
-        'category': 'algorithm'
+        'category': 'computer_system'
     },
     {
         'id':25,
@@ -429,7 +429,7 @@ QUESTIONS_DATA = [
                        '一方、ノンプリエンプティブ（Non-preemptive）方式では、実行中のプロセスが自発的にCPUを解放するまで'
                        '他のプロセスにCPUを渡さない ため、強制的な切り替えは行われません。',
         'difficulty': 'normal',
-        'category': 'algorithm'
+        'category': 'system_software'
     },
     {
         'id':26,
@@ -446,7 +446,7 @@ QUESTIONS_DATA = [
                        '各ハードウェア（プリンター、キーボード、マウス、NICなど）の違いを吸収し、OS上から一貫したインターフェース で利用できるようにします。'
                        'ソフトウェアの更新やウイルス対策はデバイスドライバの役割ではなく、アップデータやセキュリティソフトの役割です。',
         'difficulty': 'normal',
-        'category': 'software'
+        'category': 'system_software'
     }, 
     {
         'id':27,
@@ -466,7 +466,7 @@ QUESTIONS_DATA = [
                        'このように モードを分離 することで、アプリケーションが誤操作や悪意ある操作によって'
                        'システム全体に影響を及ぼすのを防ぎ、OSの安定性やセキュリティを向上させています。',
         'difficulty': 'normal',
-        'category': 'algorithm'
+        'category': 'system_software'
     }, 
     {
         'id':28,
@@ -486,7 +486,7 @@ QUESTIONS_DATA = [
                        'コンテキストスイッチ はCPUが実行中のプロセスを切り替える動作、'
                        'プロセッサ例外 は不正アクセスやゼロ除算などのハードウェア例外を指します。',
         'difficulty': 'normal',
-        'category': 'software'
+        'category': 'system_software'
     },
     {
         'id':29,
@@ -557,7 +557,7 @@ QUESTIONS_DATA = [
                        'しかし、実行のたびに解析を行うため、通常はコンパイラ型より遅い。'
                        'コンパイラ型言語（C, C++, Javaなど） は、事前にプログラム全体を機械語に変換するため、実行速度が速い。',
         'difficulty': 'normal',
-        'category': 'database'
+        'category': 'software'
     },
     {
         'id':33,
@@ -573,7 +573,7 @@ QUESTIONS_DATA = [
         'explanation': 'バージョン管理システム（VCS） とは、プログラムの変更履歴を記録し、過去のバージョンに戻せるようにするシステム。'
                        '代表的なバージョン管理ツールには Git, Subversion（SVN）, Mercurial などがある。',
         'difficulty': 'normal',
-        'category': 'database'
+        'category': 'software'
     },
     {
         'id':34,
@@ -590,7 +590,7 @@ QUESTIONS_DATA = [
                        'コンピュータが使用できる電圧（+12V, +5V, +3.3V など）に変換し、'
                        'マザーボード、CPU、HDD/SSD、GPUなどに適切な電力を供給する。',
         'difficulty': 'normal',
-        'category': 'database'
+        'category': 'hardware'
     },
     {
         'id':35,
@@ -607,7 +607,7 @@ QUESTIONS_DATA = [
                        'NOR型フラッシュメモリ は、読み出しが速いため、ファームウェアや組み込みシステムのROMとして利用される。'
                        'NAND型フラッシュメモリ はSSD・USBメモリ・SDカード などに広く使われる。',
         'difficulty': 'normal',
-        'category': 'database'
+        'category': 'hardware'
     },
     {
         'id':36,
@@ -624,7 +624,7 @@ QUESTIONS_DATA = [
                        'アクセス速度が遅い。'
                        'SSDはフラッシュメモリを使用 し、可動部分がないため高速 にデータを読み書きできる。',
         'difficulty': 'normal',
-        'category': 'database'
+        'category': 'hardware'
     },
     {
         'id':37,
@@ -644,7 +644,7 @@ QUESTIONS_DATA = [
                        'アドレスバス（Address Bus）： メモリアドレス情報を転送する'
                        'コントロールバス（Control Bus）： 制御信号を送受信する',
         'difficulty': 'normal',
-        'category': 'database'
+        'category': 'hardware'
     },
     {
         'id':38,
@@ -664,7 +664,7 @@ QUESTIONS_DATA = [
                        'アドレスバス（Address Bus）： メモリアドレス情報を転送する'
                        'コントロールバス（Control Bus）： 制御信号を送受信する',
         'difficulty': 'normal',
-        'category': 'database'
+        'category': 'hardware'
     },
     {
         'id':39,
@@ -680,7 +680,7 @@ QUESTIONS_DATA = [
         'explanation': 'スケルトンスクリーン とは、コンテンツの読み込み中にページの枠組みを先に表示し、'
                        'ユーザーの待ち時間を短く感じさせる手法。',
         'difficulty': 'normal',
-        'category': 'database'
+        'category': 'user_interface'
     },
     {
         'id':40,
@@ -696,7 +696,7 @@ QUESTIONS_DATA = [
         'explanation': 'フォームのユーザビリティを向上させるためには、ユーザーがスムーズに入力できるような工夫 が求められます。'
                        'プレースホルダーを使用することで、入力の期待値を示し、ユーザーが迷わずに情報を入力しやすくなります。',
         'difficulty': 'normal',
-        'category': 'database'
+        'category': 'user_interface'
     },
     {
         'id':41,
@@ -714,7 +714,7 @@ QUESTIONS_DATA = [
                        '代表的な 10のユーザビリティ原則（ニールセンの10原則）を基に、'
                        '画面の分かりやすさ、操作性、エラーハンドリング などを評価する。',
         'difficulty': 'normal',
-        'category': 'database'
+        'category': 'user_interface'
     },
     {
         'id':42,
@@ -732,7 +732,7 @@ QUESTIONS_DATA = [
                        'スクリーンリーダーが正しく動作するためには、HTMLの適切なマークアップが重要。'
                        '例：alt属性（画像の代替テキスト）、aria-label（アクセシビリティラベル）を正しく設定する。',
         'difficulty': 'normal',
-        'category': 'database'
+        'category': 'user_interface'
     },
     {
         'id':43,
@@ -826,7 +826,7 @@ QUESTIONS_DATA = [
                        '最新のパッチを適用する。'
                        '未知の脆弱性を狙った攻撃を防ぐためのセキュリティソフトを導入する。',
         'difficulty': 'normal',
-        'category': 'network'
+        'category': 'security'
     },
     {
         'id':48,
@@ -844,7 +844,7 @@ QUESTIONS_DATA = [
                        '代表的な攻撃として WannaCry などがある。'
                        '被害を防ぐためには、定期的なバックアップ や セキュリティソフトの更新 が重要である。',
         'difficulty': 'normal',
-        'category': 'network'
+        'category': 'security'
     },
     {
         'id':49,
@@ -864,7 +864,7 @@ QUESTIONS_DATA = [
                        '辞書攻撃 と組み合わせて効率を向上させることが多い。'
                        'CAPTCHAの導入やアカウントロックを行うことで防ぐことができる。',
         'difficulty': 'normal',
-        'category': 'algorithm'
+        'category': 'security'
     },
     {
         'id':50,
@@ -1124,7 +1124,7 @@ QUESTIONS_DATA = [
         'explanation': 'キャッシュメモリは、CPUとメインメモリの間に配置され、CPUが頻繁にアクセスするデータを高速に読み書きするためのメモリである。'
                        'L1キャッシュはCPU内部にあり、L2キャッシュはL1キャッシュとメインメモリの間に配置される。',
         'difficulty': 'hard',
-        'category': 'algorithm'       
+        'category': 'computer_system'       
     },
     {
         'id':63,
@@ -1190,7 +1190,7 @@ QUESTIONS_DATA = [
         'explanation': 'RISCは固定長命令を使用し、単純な命令セットで高速に実行できるよう設計されている。'
                        ' 一方、CISCは複雑な命令セットを持ち、1つの命令で多くの処理を行うことを目的としている。',
         'difficulty': 'hard',
-        'category': 'algorithm'
+        'category': 'hardware'
     },
     {
         'id':67,
@@ -1237,7 +1237,7 @@ QUESTIONS_DATA = [
         'correct_answer': 'エ',
         'explanation': 'TLS 1.3では、前方秘匿性を確保するため、RSA鍵交換は廃止され、ECDHE（Elliptic Curve Diffie-Hellman Ephemeral）などの鍵交換方式のみが採用されている。',
         'difficulty': 'hard',
-        'category': 'algorithm',
+        'category': 'security',
     },
     {
         'id':70,
@@ -1252,7 +1252,7 @@ QUESTIONS_DATA = [
         'correct_answer': 'イ',
         'explanation': 'BGPはAS間の経路制御を行うプロトコルであり、ルート選択はホップ数ではなく、ASパスやローカルプリファレンスなどの属性情報を元に決定される。',
         'difficulty': 'hard',
-        'category': 'algorithm', 
+        'category': 'network', 
     },
     {
         'id':71,
@@ -1268,7 +1268,7 @@ QUESTIONS_DATA = [
         'explanation': 'バーンアップチャートは、完了した作業量の累積を視覚化することで、プロジェクトの進捗を測定する手法。'
                        '一方、バーンダウンチャートは残作業量を可視化するもので、両者の使い分けが重要となる。',
         'difficulty': 'hard',
-        'category': 'algorithm',
+        'category': 'system_development',
     },
     {
         'id':72,
@@ -1284,7 +1284,7 @@ QUESTIONS_DATA = [
         'explanation': 'リスク対応戦略には、回避（Avoidance）、軽減（Mitigation）、転嫁（Transfer）、受容（Acceptance）がある。'
                        'リスクの軽減（Mitigation）は、発生確率や影響度を低減させるための対策を講じる方法である。',
         'difficulty': 'hard',
-        'category': 'algorithm',
+        'category': 'management',
     },
     {
         'id':73,
@@ -1300,7 +1300,7 @@ QUESTIONS_DATA = [
         'explanation': 'バリューチェーン分析は、企業の活動を「主活動」と「支援活動」に分解し、競争優位性を生み出す要因を特定する手法。'
                        'これにより、価値創出のプロセスを明確にし、IT戦略の策定に役立てることができる。',
         'difficulty': 'hard',
-        'category': 'software',
+        'category': 'strategy',
     },
     {
         'id':74,
@@ -1332,6 +1332,6 @@ QUESTIONS_DATA = [
         'explanation': 'IPsecのESP（Encapsulating Security Payload）は、データの暗号化と認証の両方を提供する。'
                        'これにより、盗聴や改ざんを防ぎ、安全な通信を実現できる。',
         'difficulty': 'hard',
-        'category': 'software',
+        'category': 'security',
     }
 ]
