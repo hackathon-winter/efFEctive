@@ -1,6 +1,7 @@
 <!-- ランキング画面 -->
 {% extends 'base.html' %}
 {% load static %}
+{% load custom_filters %}
 {% block content %}
 
 <div class="wrapper">
@@ -17,17 +18,21 @@
             {% for user in ranking %} 
             <tr>
                 <td class="col-rank">{{ forloop.counter }}位</td>
-                <td class="col-name">{{ user.0 }}</td>
+                <td class="col-name">{{ user.user_name }}</td>
                 <td class="col-reward">
                     <div class="badges-container">
-                        {% for badge in user_badges[user[0]] %} 
-                        <img class="badge-image" src="{% static 'rewards/badges/' + badge['category'] + '_' + badge['level'] + '/png'  %}">
-                        {% empty %}
-                        <div></div>
-                        {% endfor %}
+                        {% with user_badge_list=user_badges|get_item:user.id %}
+                            {% for badge in user_badge_list %}
+                                <img class="badge-image" 
+                                     src="{% static 'rewards/badges/'|add:badge.category|add:'_'|add:badge.level|add:'.png' %}" 
+                                     alt="{{ badge.category }} {{ badge.level }} バッジ">
+                            {% empty %}
+                                <div></div>
+                            {% endfor %}
+                        {% endwith %}
                     </div>
                 </td>
-                <td class="col-score">{{ user.1 }}pt</td>
+                <td class="col-score">{{ user.points }}pt</td>
             </tr>
             {% endfor %}
         </table>
