@@ -7,6 +7,14 @@ html {
 body {
   background: url("/static/images/background-image.png") no-repeat center/ cover;
 }
+
+.navbar-brand {
+  background: url("/static/images/logo.svg") no-repeat left center;
+  background-size: contain;
+  height: 50px;
+  width: 250px;
+}
+
 /* 解答履歴表のレイアウト */
 .table-responsive {
     overflow-x: auto;
@@ -41,6 +49,13 @@ body {
       font-weight: bold;
       }
 }
+
+/* .navbar-brand {
+  background: url("/static/images/logo.svg") no-repeat left center;
+  background-size: contain;
+  height: 50px;
+  width: 250px;
+} */
 
 /* ボタンのデザイン */
 .button-primary {

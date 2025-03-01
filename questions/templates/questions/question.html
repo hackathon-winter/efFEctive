@@ -30,9 +30,9 @@
       <div class="button-group">
         <form action="{% url 'end_session' %}" method="POST">
           {% csrf_token %}
-          <button type="submit" class="button-secondary">解答終了</button> 
+          <button type="submit" class="button-primary">解答終了</button> 
         </form>
-        <a href="{% url 'home' %}" class="button-primary">中断</a>
+        <a href="{% url 'home' %}" class="button-secondary">中断</a>
       </div>
   </div>
 </div>

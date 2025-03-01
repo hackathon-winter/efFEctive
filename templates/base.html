@@ -9,13 +9,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>efFEctive</title>
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="icon" href="{% static 'images/favicon.svg' %}">
     {% bootstrap_css %}
     {% bootstrap_javascript %}
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-danger-subtle sticky-top">
+    <nav class="navbar navbar-light bg-danger-subtle sticky-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'home' %}">efFEctive</a>
+            <a class="navbar-brand" href="{% url 'home' %}"></a>
+            <!-- <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'images/logo.svg' %}"></a> -->
             <button class="navbar-toggler" type="button" data-bs-toggle="modal" data-bs-target="#menuModal" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -31,20 +33,20 @@
                 </div>
                 <div class="modal-body">
                     <ul class="nav flex-column align-items-center">
-                        <li class="nav-item">
-                            <a class="nav-link button-primary" aria-current="page" href="{% url 'home' %}">ホーム画面</a>
+                        <li class="nav-item mb-3">
+                            <a class="button-primary" aria-current="page" href="{% url 'home' %}">ホーム画面</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link button-primary" data-bs-toggle="modal" data-bs-target="#selectModeModal">問題演習</a>
+                        <li class="nav-item mb-3">
+                            <a class="button-primary" data-bs-toggle="modal" data-bs-target="#selectModeModal">問題演習</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link button-primary" href="{% url 'learning_history' %}">学習履歴</a>
+                        <li class="nav-item mb-3">
+                            <a class="button-primary" href="{% url 'learning_history' %}">学習履歴</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link button-primary" href="{% url 'ranking' %}">ランキング</a>
+                        <li class="nav-item mb-3">
+                            <a class="button-primary" href="{% url 'ranking' %}">ランキング</a>
                         </li>                     
                         <li class="nav-item">
-                            <a class="nav-link button-primary" href="javascript:void(0);" onclick="logoutUser(event)">ログアウト</a>
+                            <a class="button-primary" href="javascript:void(0);" onclick="logoutUser(event)">ログアウト</a>
                         </li>
                     </ul>
                 </div>
