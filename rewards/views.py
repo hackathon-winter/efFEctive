@@ -1,10 +1,9 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from django.db.models import Count, Sum
+from django.db.models import Count, Prefetch
 from django.utils.timezone import now
 from authentication.models import User
 from questions.models import Answer, Question
-from progress.models import Session
 from .models import Badge, BadgesAwarded
 
 @login_required
@@ -76,23 +75,22 @@ def check_and_award_badges(request, user, category=None):
 @login_required
 def ranking_view(request):
 
-    users = User.objects.all().order_by('-points')
+    # ユーザーと関連するバッジ情報を取得
+    ranking = User.objects.prefetch_related(
+        Prefetch(
+            'badge_awards',  # Userモデルの related_name='badge_awards'
+            queryset=BadgesAwarded.objects.select_related('badge'),
+            to_attr='badge_awards_list'
+        )
+    ).order_by('-points')
 
-    ranking = [
-        (user.user_name, user.points, user) for user in users
-    ]
-
-    # 各ユーザーのバッジ情報を取得する
-    user_badges = {
-        user.user_name:[
-            {
-                'category': badge_award.badge.category.lower(),
-                'level': badge_award.badge.level.lower() 
-            }
-            for badge_award in user.badge_awards.all()
-        ]
-        for user in users
-    }
+    # 各ユーザーのバッジ情報を辞書にまとめる
+    user_badges = {}
+    for user in ranking:
+        user_badges[user.id] = []
+        # prefetch_relatedで取得した badge_awards_list からバッジ情報を取り出す
+        for badge_award in getattr(user, 'badge_awards_list', []):
+            user_badges[user.id].append(badge_award.badge)
 
     correct_answers = Answer.objects.filter(is_correct=True).count()
     total_answers = Answer.objects.count()
