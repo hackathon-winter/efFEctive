@@ -47,7 +47,7 @@ cd efFEctive
 docker-compose up -d
 ```
 
-4. データベースのマイグレーション
+4. データベースのマイグレーション<br>
 コンテナ内で、データベースをセットアップします。
 ```sh
 docker-compose exec web python manage.py makemigrations
