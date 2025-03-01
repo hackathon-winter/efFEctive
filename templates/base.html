@@ -13,7 +13,7 @@
     {% bootstrap_javascript %}
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-dark-subtle sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-light bg-danger-subtle sticky-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'home' %}">efFEctive</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="modal" data-bs-target="#menuModal" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,19 +32,19 @@
                 <div class="modal-body">
                     <ul class="nav flex-column align-items-center">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="{% url 'home' %}">ホーム画面</a>
+                            <a class="nav-link button-primary" aria-current="page" href="{% url 'home' %}">ホーム画面</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="modal" data-bs-target="#selectModeModal">問題演習</a>
+                            <a class="nav-link button-primary" data-bs-toggle="modal" data-bs-target="#selectModeModal">問題演習</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'learning_history' %}">学習履歴</a>
+                            <a class="nav-link button-primary" href="{% url 'learning_history' %}">学習履歴</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'ranking' %}">ランキング</a>
+                            <a class="nav-link button-primary" href="{% url 'ranking' %}">ランキング</a>
                         </li>                     
                         <li class="nav-item">
-                            <a class="nav-link" href="javascript:void(0);" onclick="logoutUser(event)">ログアウト</a>
+                            <a class="nav-link button-primary" href="javascript:void(0);" onclick="logoutUser(event)">ログアウト</a>
                         </li>
                     </ul>
                 </div>
