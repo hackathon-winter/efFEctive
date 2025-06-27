@@ -1,9 +1,37 @@
-.env
+# Python バイトコード
 __pycache__/
 *.py[cod]
 *$py.class
-*.so
-EOF
 
-# collectstatic で生成されるファイルを無視
+# 環境ファイル（秘密情報など）
+.env
+
+# 仮想環境（venv 以下は無視）
+venv/
+
+# OS固有ファイル
+.DS_Store
+
+# コンパイル済みのバイナリなど
+*.so
+
+# collectstatic で生成される静的ファイル集約ディレクトリ
 /staticfiles/
+
+# uwsgi のソケットファイルなどランタイム生成物
+/run/
+
+# VSCode などエディタ設定（必要なら）
+.vscode/
+*.code-workspace
+
+# 開発やマイグレーション時に生成される不要な一時ファイルを無視
+*.log
+*.pot
+*.pyc
+*.pyo
+*.orig
+
+# __init__.py のバックアップファイルなど
+*~ 
+*.swp
